@@ -60,6 +60,9 @@ namespace CODE_GameLib
         }
 
         public bool IsBorderTile(int x, int y) => IsBorderTile(Player.Room, x, y);
-        public bool IsBorderTile(RoomBase room, int x, int y) => x == room.Width - 1 || x == 0 || y == room.Height - 1 || y == 0;
+        public bool IsBorderTile(RoomBase room, int x, int y)
+        {
+            return x == room.Width - 1 || x == 0 || y == room.Height - 1 || y == 0;
+        }
     }
 }
