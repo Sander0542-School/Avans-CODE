@@ -44,13 +44,13 @@ namespace CODE_GameLib
                     nextY--;
                     break;
                 case Direction.EAST:
-                    nextX--;
+                    nextX++;
                     break;
                 case Direction.SOUTH:
                     nextY++;
                     break;
                 case Direction.WEST:
-                    nextX++;
+                    nextX--;
                     break;
                 default:
                     throw new NotImplementedException("This direction has not been implemented yet");
