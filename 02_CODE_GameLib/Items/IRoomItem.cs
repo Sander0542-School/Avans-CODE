@@ -2,11 +2,8 @@
 
 namespace CODE_GameLib.Items
 {
-    public interface IRoomItem
+    public interface IRoomItem : ICoordinates
     {
-        int X { get; set; }
-        int Y { get; set; }
-
         Color GetColor()
         {
             return Color.White;

@@ -18,11 +18,12 @@ namespace CODE_FileSystem
         public Game Read(string filePath)
         {
             var json = JObject.Parse(File.ReadAllText(filePath));
+
+            var rooms = GetRooms(json["rooms"]);
             
-            return new Game
-            {
-                Rooms = GetRooms(json["rooms"])
-            };
+            var player = GetPlayer(json["player"], rooms);
+
+            return new Game(filePath, rooms, player);
         }
 
         private List<RoomBase> GetRooms(JToken rooms)
@@ -53,10 +54,7 @@ namespace CODE_FileSystem
 
                 var room = _roomFactory.CreateRoom(type, id, height, width);
 
-                if (jsonRoom["items"] != null)
-                {
-                    room.Items = GetRoomItems(jsonRoom["items"]);
-                }
+                room.Items = jsonRoom["items"] != null ? GetRoomItems(jsonRoom["items"]) : new List<IRoomItem>();
 
                 return room;
             }
@@ -90,6 +88,29 @@ namespace CODE_FileSystem
             }
 
             return items;
+        }
+
+        private Player GetPlayer(JToken jsonPlayer, IEnumerable<RoomBase> rooms)
+        {
+            try
+            {
+                var startRoomId = int.Parse(jsonPlayer["startRoomId"].ToString());
+                var startX = int.Parse(jsonPlayer["startX"].ToString());
+                var startY = int.Parse(jsonPlayer["startY"].ToString());
+                var lives = int.Parse(jsonPlayer["lives"].ToString());
+
+                return new Player
+                {
+                    Lives = lives,
+                    X = startX,
+                    Y = startY,
+                    Room = rooms.First(room => room.Id == startRoomId)
+                };
+            }
+            catch (Exception exception)
+            {
+                throw new ArgumentException($"The json file does not contain a valid player");
+            }
         }
     }
 }
