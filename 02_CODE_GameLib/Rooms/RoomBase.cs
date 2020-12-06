@@ -10,6 +10,13 @@ namespace CODE_GameLib.Rooms
         
         public int Width { get; set; }
         public int Height { get; set; }
+
+        public RoomBase(int id, int height, int width)
+        {
+            Id = id;
+            Width = width;
+            Height = height;
+        }
         
         public Dictionary<Direction, Connection> Connections { get; set; }
         public List<RoomItem> Items { get; set; }

@@ -5,4 +5,8 @@
     <RootNamespace>CODE_GameLib</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Items\NewFile1.txt" />
+  </ItemGroup>
+
 </Project>

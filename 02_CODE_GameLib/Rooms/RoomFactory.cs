@@ -2,20 +2,17 @@
 
 namespace CODE_GameLib.Rooms
 {
-    public class RoomFactory : IRoomFactory
+    public class RoomFactory 
     {
-        public RoomFactory()
+        public RoomBase CreateRoom(string type, int height, int width, int id)
         {
-        }
-
-        public RoomBase CreateRoom()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool AppliesTo(Type type)
-        {
-            throw new NotImplementedException();
+            switch (type)
+            {
+                case "room":
+                    return new Room(id, height, width);
+                default:
+                    throw new NotImplementedException(message: "This room is not implemented yet");
+            }
         }
     }
 }
