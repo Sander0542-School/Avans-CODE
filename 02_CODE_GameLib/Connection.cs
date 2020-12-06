@@ -1,4 +1,5 @@
 ﻿using CODE_GameLib.Doors;
+using CODE_GameLib.Rooms;
 
 namespace CODE_GameLib
 {

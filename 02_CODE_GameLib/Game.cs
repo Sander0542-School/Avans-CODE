@@ -1,10 +1,13 @@
-﻿using System;
+﻿using CODE_GameLib.Rooms;
+using System;
+using System.Collections.Generic;
 
 namespace CODE_GameLib
 {
     public class Game
     {
         public event EventHandler<Game> Updated;
+        public List<RoomBase> Rooms;
 
         public ConsoleKey KeyPressed { get; private set; }
         public bool Quit { get; private set; } = false;
