@@ -19,6 +19,6 @@ namespace CODE_GameLib.Rooms
         }
         
         public Dictionary<Direction, Connection> Connections { get; set; }
-        public List<RoomItem> Items { get; set; }
+        public List<IRoomItem> Items { get; set; }
     }
 }

@@ -5,7 +5,7 @@ namespace CODE_GameLib
 {
     public class Connection
     {
-        public Room Room { get; set; }
+        public RoomBase Room { get; set; }
         
         public IDoor Door { get; set; }
     }

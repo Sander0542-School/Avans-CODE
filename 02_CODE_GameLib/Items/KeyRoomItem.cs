@@ -1,7 +1,8 @@
 ﻿namespace CODE_GameLib.Items
 {
-    public class KeyRoomItem : RoomItem
+    public class KeyRoomItem : IRoomItem
     {
-        public string Color { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
     }
 }

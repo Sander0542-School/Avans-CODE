@@ -4,7 +4,7 @@ namespace CODE_GameLib.Rooms
 {
     public class RoomFactory 
     {
-        public RoomBase CreateRoom(string type, int height, int width, int id)
+        public RoomBase CreateRoom(string type, int id, int height, int width)
         {
             switch (type)
             {
