@@ -7,9 +7,6 @@ namespace CODE_Frontend
 {
     class Program
     {
-        public static ConsoleKey KeyPressed { get; private set; }
-        
-
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
@@ -18,45 +15,43 @@ namespace CODE_Frontend
             Console.WindowHeight = 50;
             Console.CursorVisible = false;
 
-            GameReader reader = new GameReader();
-            Game game = reader.Read(@"./Levels/TempleOfDoom.json");
+            var reader = new GameReader();
+            var game = reader.Read(@"./Levels/TempleOfDoom.json");
 
-            GameView gameView = new GameView();
-            game.Updated += (sender, game) => gameView.Draw(game);
-
-
-            KeyPressed = Console.ReadKey().Key;
-            Direction direction;
+            var gameView = new GameView();
+            game.Updated += (sender, game1) => gameView.Draw(game1);
+            
             while (!game.Quit)
             {
-                switch (KeyPressed)
+                switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.Escape:
                         game.Quit = true;
                         break;
-                    case ConsoleKey.LeftArrow:
-                    case ConsoleKey.A:
-                        direction = Direction.WEST;
-                        break;
                     case ConsoleKey.UpArrow:
                     case ConsoleKey.W:
-                        direction = Direction.NORTH;
+                    case ConsoleKey.I:
+                        game.Move(Direction.NORTH);
                         break;
-                    case ConsoleKey.RightArrow:
-                    case ConsoleKey.D:
-                        direction = Direction.EAST;
+                    case ConsoleKey.LeftArrow:
+                    case ConsoleKey.A:
+                    case ConsoleKey.J:
+                        game.Move(Direction.WEST);
                         break;
                     case ConsoleKey.DownArrow:
                     case ConsoleKey.S:
-                        direction = Direction.SOUTH;
+                    case ConsoleKey.K:
+                        game.Move(Direction.SOUTH);
+                        break;
+                    case ConsoleKey.RightArrow:
+                    case ConsoleKey.D:
+                    case ConsoleKey.L:
+                        game.Move(Direction.EAST);
                         break;
                 }
-                game.Move(direction);
             }
-
             
-            
-            
+            Console.WriteLine("Thanks for playing Temple of Doom!");
         }
     }
 }
