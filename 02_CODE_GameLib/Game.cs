@@ -8,24 +8,25 @@ namespace CODE_GameLib
     {
         public event EventHandler<Game> Updated;
         public List<RoomBase> Rooms;
-
+        public bool Quit { get; set; } = false;
         public ConsoleKey KeyPressed { get; private set; }
-        public bool Quit { get; private set; } = false;
 
-        public void Run()
+        public void Move(Direction direction)
         {
-            KeyPressed = Console.ReadKey().Key;
-            Quit = KeyPressed == ConsoleKey.Escape;
+            Console.WriteLine(direction.ToString());
 
-            while (!Quit)
-            {
-                Updated?.Invoke(this, this);
+            //KeyPressed = Console.ReadKey().Key;
+            //Quit = KeyPressed == ConsoleKey.Escape;
 
-                KeyPressed = Console.ReadKey().Key;
-                Quit = KeyPressed == ConsoleKey.Escape;
-            }
+            //while (!Quit)
+            //{
+            //    Updated?.Invoke(this, this);
 
-            Updated?.Invoke(this, this);
+            //    KeyPressed = Console.ReadKey().Key;
+            //    Quit = KeyPressed == ConsoleKey.Escape;
+            //}
+
+            //Updated?.Invoke(this, this);
         }
     }
 }
