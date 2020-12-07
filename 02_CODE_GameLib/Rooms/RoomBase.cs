@@ -16,6 +16,9 @@ namespace CODE_GameLib.Rooms
             Id = id;
             Width = width;
             Height = height;
+
+            Connections = new Dictionary<Direction, Connection>();
+            Items = new List<IRoomItem>();
         }
         
         public Dictionary<Direction, Connection> Connections { get; set; }

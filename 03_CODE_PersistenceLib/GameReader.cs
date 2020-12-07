@@ -20,8 +20,10 @@ namespace CODE_FileSystem
             var json = JObject.Parse(File.ReadAllText(filePath));
 
             var rooms = GetRooms(json["rooms"]);
-            
+
             var player = GetPlayer(json["player"], rooms);
+
+            ApplyConnection(json["connections"], rooms);
 
             return new Game(filePath, rooms, player);
         }
@@ -111,6 +113,61 @@ namespace CODE_FileSystem
             {
                 throw new ArgumentException($"The json file does not contain a valid player");
             }
+        }
+
+        private void ApplyConnection(JToken jsonConnections, IEnumerable<RoomBase> rooms)
+        {
+            try
+            {
+                foreach (var jsonConnection in jsonConnections)
+                {
+                    var directions = GetConnectionDirections(jsonConnection);
+
+                    var roomOne = rooms.First(room => room.Id == directions.First().Value);
+
+                    roomOne.Connections.Add(directions.First().Key, new Connection
+                    {
+                        TargetRoom = rooms.First(room => room.Id == directions.Last().Value),
+                        TargetDirection = directions.Last().Key
+
+                    });
+
+                    var roomTwo = rooms.First(room => room.Id == directions.Last().Value);
+
+                    roomTwo.Connections.Add(directions.Last().Key, new Connection
+                    {
+                        TargetRoom = rooms.First(room => room.Id == directions.First().Value),
+                        TargetDirection = directions.First().Key
+
+                    });
+                }
+
+
+
+            }
+            catch (Exception exception)
+            {
+                throw new ArgumentException($"The json file does not contain a valid connection");
+            }
+        }
+
+        private IDictionary<Direction, int> GetConnectionDirections(JToken jsonConnection)
+        {
+            var directions = new Dictionary<Direction, int>();
+
+            foreach (Direction direction in Enum.GetValues(typeof(Direction)))
+            {
+                if (jsonConnection[direction.ToString()] != null)
+                {
+                    directions.Add(direction, int.Parse(jsonConnection[direction.ToString()].ToString()));
+                }
+            }
+
+            if (directions.Count != 2)
+            {
+                throw new ArgumentException("The connection is not valid.");
+            }
+            return directions;
         }
     }
 }
