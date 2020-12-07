@@ -26,8 +26,7 @@ namespace CODE_GameLib
         {
             if (CanPlayerMove(Player, direction, out var nextX, out var nextY))
             {
-                Player.X = nextX;
-                Player.Y = nextY;
+                Player.Move(nextX, nextY);
             }
 
             Updated?.Invoke(this, this);

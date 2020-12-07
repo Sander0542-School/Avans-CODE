@@ -5,8 +5,14 @@ namespace CODE_GameLib.Items
 {
     public class PressurePlateRoomItem : IRoomItem
     {
-        public int X { get; set; }
-        public int Y { get; set; }
+        public int X { get; private set; }
+        public int Y { get; private set; }
+
+        public PressurePlateRoomItem(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
 
         public void OnUse(Player player)
         {

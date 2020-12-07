@@ -101,15 +101,11 @@ namespace CODE_FileSystem
                 var startY = int.Parse(jsonPlayer["startY"].ToString());
                 var lives = int.Parse(jsonPlayer["lives"].ToString());
 
-                return new Player
-                {
-                    Lives = lives,
-                    X = startX,
-                    Y = startY,
-                    Room = rooms.First(room => room.Id == startRoomId)
-                };
+                var room = rooms.First(room1 => room1.Id == startRoomId);
+
+                return new Player(lives, room, startX, startY);
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 throw new ArgumentException($"The json file does not contain a valid player");
             }

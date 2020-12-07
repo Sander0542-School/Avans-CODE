@@ -12,26 +12,23 @@ namespace CODE_GameLib.Items
             switch (type)
             {
                 case "key":
-                    roomItem = new KeyRoomItem(options["color"]);
+                    roomItem = new KeyRoomItem(x, y, options["color"]);
                     break;
                 case "disappearing boobietrap":
-                    roomItem = new DisappearingBoobietrapRoomItem(int.Parse(options["damage"]));
+                    roomItem = new DisappearingBoobietrapRoomItem(x, y, int.Parse(options["damage"]));
                     break;
                 case "boobietrap":
-                    roomItem = new BoobietrapRoomItem(int.Parse(options["damage"]));
+                    roomItem = new BoobietrapRoomItem(x, y, int.Parse(options["damage"]));
                     break;
                 case "sankara stone":
-                    roomItem = new SankaraStoneRoomItem();
+                    roomItem = new SankaraStoneRoomItem(x, y);
                     break;
                 case "pressure plate":
-                    roomItem = new PressurePlateRoomItem();
+                    roomItem = new PressurePlateRoomItem(x, y);
                     break;
                 default:
                     throw new NotImplementedException("This item has not been implemented yet");
             }
-
-            roomItem.X = x;
-            roomItem.Y = y;
 
             return roomItem;
         }

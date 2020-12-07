@@ -8,11 +8,19 @@ namespace CODE_GameLib
     {
         public int Lives { get; private set; }
 
-        public RoomBase Room { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
+        public RoomBase Room { get; private set; }
+        public int X { get; private set; }
+        public int Y { get; private set; }
 
         public ObservableCollection<IRoomItem> Items { get; set; }
+
+        public Player(int lives, RoomBase room, int x, int y)
+        {
+            Lives = lives;
+            Room = room;
+            X = x;
+            Y = y;
+        }
 
         public void Move(int x, int y)
         {

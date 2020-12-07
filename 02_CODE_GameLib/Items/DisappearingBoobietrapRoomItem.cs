@@ -4,7 +4,7 @@
     {
         private bool _exploded = false;
 
-        public DisappearingBoobietrapRoomItem(int damage) : base(damage)
+        public DisappearingBoobietrapRoomItem(int x, int y, int damage) : base(x, y, damage)
         {
         }
 

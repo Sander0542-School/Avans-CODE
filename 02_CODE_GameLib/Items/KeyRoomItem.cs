@@ -2,14 +2,17 @@
 {
     public class KeyRoomItem : IRoomItem
     {
-        public int X { get; set; }
+        public int X { get; private set; }
 
-        public int Y { get; set; }
+        public int Y { get; private set; }
 
         public string Color { get; private set; }
 
-        public KeyRoomItem(string color)
+        public KeyRoomItem(int y, int x, string color)
         {
+            Y = y;
+            X = x;
+            
             Color = color;
         }
         
