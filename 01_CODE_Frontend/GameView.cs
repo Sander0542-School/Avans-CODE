@@ -55,7 +55,7 @@ namespace CODE_Frontend
                         {
                             var item = room.Items.First(item1 => item1.X == x && item1.Y == y);
 
-                            Console.ForegroundColor = FromColor(item.GetColor());
+                            // Console.ForegroundColor = FromColor(item.GetColor());
                             Console.Write("I");
                         }
                         else
