@@ -2,6 +2,8 @@
 {
     public interface IDoor
     {
-        
+        bool IsOpen(Player player);
+
+        void AfterUse(Player player);
     }
 }

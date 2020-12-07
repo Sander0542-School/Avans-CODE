@@ -4,9 +4,6 @@ namespace CODE_GameLib.Items
 {
     public interface IRoomItem : ICoordinates
     {
-        Color GetColor()
-        {
-            return Color.White;
-        }
+        void OnUse(Player player);
     }
 }

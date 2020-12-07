@@ -7,9 +7,10 @@ namespace CODE_GameLib.Items
         public int X { get; set; }
         public int Y { get; set; }
 
-        public Color GetColor()
+        public void OnUse(Player player)
         {
-            return Color.Orange;
+            player.AddItem(this);
+            player.Room.Items.Remove(this);
         }
     }
 }
