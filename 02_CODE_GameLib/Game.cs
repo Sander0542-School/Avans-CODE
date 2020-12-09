@@ -38,9 +38,9 @@ namespace CODE_GameLib
                 {
                     Quit = true;
                 }
-            }
 
-            Updated?.Invoke(this, this);
+                Updated?.Invoke(this, this);
+            }
         }
 
         private bool CanPlayerMove(Player player, Direction direction, out RoomBase room, out int nextX, out int nextY)
