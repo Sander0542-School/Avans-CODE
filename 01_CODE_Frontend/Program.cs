@@ -21,8 +21,6 @@ namespace CODE_Frontend
             var gameView = new GameView();
             game.Updated += (sender, game1) => gameView.Draw(game1);
             
-            game.Move(Direction.NORTH); //TODO(Remove)
-            
             while (!game.Quit)
             {
                 switch (Console.ReadKey().Key)

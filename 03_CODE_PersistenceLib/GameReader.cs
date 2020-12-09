@@ -121,27 +121,24 @@ namespace CODE_FileSystem
 
                     var roomOne = rooms.First(room => room.Id == directions.First().Value);
 
-                    roomOne.Connections.Add(directions.First().Key, new Connection
+                    roomOne.Connections.Add(directions.Last().Key, new Connection
                     {
                         TargetRoom = rooms.First(room => room.Id == directions.Last().Value),
-                        TargetDirection = directions.Last().Key
+                        TargetDirection = directions.First().Key
 
                     });
 
                     var roomTwo = rooms.First(room => room.Id == directions.Last().Value);
 
-                    roomTwo.Connections.Add(directions.Last().Key, new Connection
+                    roomTwo.Connections.Add(directions.First().Key, new Connection
                     {
                         TargetRoom = rooms.First(room => room.Id == directions.First().Value),
-                        TargetDirection = directions.First().Key
+                        TargetDirection = directions.Last().Key
 
                     });
                 }
-
-
-
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 throw new ArgumentException($"The json file does not contain a valid connection");
             }
