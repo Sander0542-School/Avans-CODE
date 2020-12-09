@@ -44,8 +44,11 @@ namespace CODE_Frontend
                             Console.ForegroundColor = ConsoleColor.DarkBlue;
                             Console.Write("P");
                         }
-                        else if (false) //TODO(Door)
+                        else if (game.HasConnection(room, x, y, out var direction))
                         {
+                            var connection = room.Connections[direction];
+
+                            Console.Write(connection.Door != null ? "D" : " ");
                         }
                         else if (game.IsBorderTile(room, x, y))
                         {
@@ -75,7 +78,7 @@ namespace CODE_Frontend
                 Console.WriteLine("+-------------------------------------------------");
                 Console.WriteLine($"| Lives:  {game.Player.Lives}");
                 Console.WriteLine($"| Stones: {game.Player.Items.Count(item => item is SankaraStoneRoomItem)}");
-                Console.WriteLine($"| Keys:   {string.Join(", ", game.Player.Items.Where(item => item is KeyRoomItem).Select(item => ((KeyRoomItem)item).Color))}");
+                Console.WriteLine($"| Keys:   {string.Join(", ", game.Player.Items.Where(item => item is KeyRoomItem).Select(item => ((KeyRoomItem) item).Color))}");
                 Console.WriteLine("+-------------------------------------------------");
                 Console.WriteLine("| A game for the course Code Development (20/21) by Tommy den Reijer and Sander Jochems.");
                 Console.WriteLine("+-------------------------------------------------");
@@ -85,13 +88,14 @@ namespace CODE_Frontend
                 Console.WriteLine("Quitting game, goodbye!");
             }
         }
-        
-        public static ConsoleColor FromColor(Color color) {
+
+        public static ConsoleColor FromColor(Color color)
+        {
             var index = (color.R > 128 | color.G > 128 | color.B > 128) ? 8 : 0; // Bright bit
             index |= (color.R > 64) ? 4 : 0; // Red bit
             index |= (color.G > 64) ? 2 : 0; // Green bit
             index |= (color.B > 64) ? 1 : 0; // Blue bit
-            return (ConsoleColor)index;
+            return (ConsoleColor) index;
         }
 
         private ConsoleColor GetBackgroundColor(int x, int y)

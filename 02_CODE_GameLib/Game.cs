@@ -72,6 +72,16 @@ namespace CODE_GameLib
                 return false;
             }
 
+            if (HasConnection(room, nextX, nextY, out var doorDirection))
+            {
+                var connection = room.Connections[doorDirection];
+
+                if (connection.Door != null && !connection.Door.IsOpen(player))
+                {
+                    return false;
+                }
+            }
+
             if (!IsInRoom(room, nextX, nextY, out var exitDirection))
             {
                 var connection = room.Connections[exitDirection];
@@ -99,6 +109,8 @@ namespace CODE_GameLib
                     default:
                         throw new NotImplementedException("This entrance direction is not yet supported");
                 }
+                
+                connection.Door?.AfterUse(player);
             }
 
             return true;
@@ -141,7 +153,7 @@ namespace CODE_GameLib
 
         public bool IsBorderTile(RoomBase room, int x, int y)
         {
-            if (HasConnection(room, x, y))
+            if (HasConnection(room, x, y, out var direction))
             {
                 return false;
             }
@@ -149,17 +161,21 @@ namespace CODE_GameLib
             return x == room.Width - 1 || x == 0 || y == room.Height - 1 || y == 0;
         }
 
-        public bool HasConnection(RoomBase room, int x, int y)
+        public bool HasConnection(RoomBase room, int x, int y, out Direction direction)
         {
+            direction = Direction.NORTH;
+
             if (x == room.Width / 2)
             {
                 if (y == 0 && room.Connections.ContainsKey(Direction.NORTH))
                 {
+                    direction = Direction.NORTH;
                     return true;
                 }
 
                 if (y == room.Height - 1 && room.Connections.ContainsKey(Direction.SOUTH))
                 {
+                    direction = Direction.SOUTH;
                     return true;
                 }
             }
@@ -167,11 +183,13 @@ namespace CODE_GameLib
             {
                 if (x == 0 && room.Connections.ContainsKey(Direction.WEST))
                 {
+                    direction = Direction.WEST;
                     return true;
                 }
 
                 if (x == room.Width - 1 && room.Connections.ContainsKey(Direction.EAST))
                 {
+                    direction = Direction.EAST;
                     return true;
                 }
             }

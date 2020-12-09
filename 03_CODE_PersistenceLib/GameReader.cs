@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CODE_GameLib;
+using CODE_GameLib.Doors;
 using CODE_GameLib.Items;
 using CODE_GameLib.Rooms;
 using Newtonsoft.Json;
@@ -14,6 +15,7 @@ namespace CODE_FileSystem
     {
         private readonly RoomFactory _roomFactory = new RoomFactory();
         private readonly RoomItemFactory _roomItemFactory = new RoomItemFactory();
+        private readonly DoorFactory _doorFactory = new DoorFactory();
 
         public Game Read(string filePath)
         {
@@ -120,21 +122,22 @@ namespace CODE_FileSystem
                     var directions = GetConnectionDirections(jsonConnection);
 
                     var roomOne = rooms.First(room => room.Id == directions.First().Value);
+                    var roomTwo = rooms.First(room => room.Id == directions.Last().Value);
+
+                    var door = GetConnectionDoor(jsonConnection);
 
                     roomOne.Connections.Add(directions.Last().Key, new Connection
                     {
                         TargetRoom = rooms.First(room => room.Id == directions.Last().Value),
-                        TargetDirection = directions.First().Key
-
+                        TargetDirection = directions.First().Key,
+                        Door = door
                     });
-
-                    var roomTwo = rooms.First(room => room.Id == directions.Last().Value);
 
                     roomTwo.Connections.Add(directions.First().Key, new Connection
                     {
                         TargetRoom = rooms.First(room => room.Id == directions.First().Value),
-                        TargetDirection = directions.Last().Key
-
+                        TargetDirection = directions.Last().Key,
+                        Door = door
                     });
                 }
             }
@@ -142,6 +145,23 @@ namespace CODE_FileSystem
             {
                 throw new ArgumentException($"The json file does not contain a valid connection");
             }
+        }
+
+        private IDoor GetConnectionDoor(JToken jsonConnection)
+        {
+            if (jsonConnection["door"] == null)
+            {
+                return null;
+            }
+
+            var jsonDoor = jsonConnection["door"];
+            
+            var type = jsonDoor["type"].ToString();
+
+            var options = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonDoor.ToString());
+            options.Remove("type");
+
+            return _doorFactory.CreateDoor(type, options);
         }
 
         private IDictionary<Direction, int> GetConnectionDirections(JToken jsonConnection)
@@ -160,6 +180,7 @@ namespace CODE_FileSystem
             {
                 throw new ArgumentException("The connection is not valid.");
             }
+
             return directions;
         }
     }
