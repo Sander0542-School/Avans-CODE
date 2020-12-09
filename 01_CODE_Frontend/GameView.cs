@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using CODE_GameLib.Items;
 using CODE_GameLib.Rooms;
 
 namespace CODE_Frontend
@@ -72,7 +73,9 @@ namespace CODE_Frontend
 
                 Console.WriteLine("|");
                 Console.WriteLine("+-------------------------------------------------");
-                Console.WriteLine($"| Lives: {game.Player.Lives}");
+                Console.WriteLine($"| Lives:  {game.Player.Lives}");
+                Console.WriteLine($"| Stones: {game.Player.Items.Count(item => item is SankaraStoneRoomItem)}");
+                Console.WriteLine($"| Keys:   {string.Join(", ", game.Player.Items.Where(item => item is KeyRoomItem).Select(item => ((KeyRoomItem)item).Color))}");
                 Console.WriteLine("+-------------------------------------------------");
                 Console.WriteLine("| A game for the course Code Development (20/21) by Tommy den Reijer and Sander Jochems.");
                 Console.WriteLine("+-------------------------------------------------");

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CODE_GameLib.Items;
 
 namespace CODE_GameLib
 {
@@ -27,6 +28,16 @@ namespace CODE_GameLib
             if (CanPlayerMove(Player, direction, out var room, out var nextX, out var nextY))
             {
                 Player.Move(room, nextX, nextY);
+
+                if (!Rooms.Any(room1 => room1.Items.Any(item => item is SankaraStoneRoomItem)))
+                {
+                    Quit = true;
+                }
+
+                if (Player.Lives <= 0)
+                {
+                    Quit = true;
+                }
             }
 
             Updated?.Invoke(this, this);

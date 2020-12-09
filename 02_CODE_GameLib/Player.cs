@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using CODE_GameLib.Items;
 using CODE_GameLib.Rooms;
 
@@ -20,6 +21,8 @@ namespace CODE_GameLib
             Room = room;
             X = x;
             Y = y;
+            
+            Items = new ObservableCollection<IRoomItem>();
         }
 
         public void Move(int x, int y)
@@ -32,6 +35,8 @@ namespace CODE_GameLib
             Room = room;
             X = x;
             Y = y;
+
+            room.Items.FirstOrDefault(roomItem => roomItem.X == x && roomItem.Y == y)?.OnUse(this);
         }
 
         public void Damage(int damage)
