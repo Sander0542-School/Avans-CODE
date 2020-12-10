@@ -29,11 +29,13 @@ namespace CODE_GameLib
             {
                 Player.Move(room, nextX, nextY);
 
+                //When the SakaraStone is picked up, the game ends.
                 if (!Rooms.Any(room1 => room1.Items.Any(item => item is SankaraStoneItem)))
                 {
                     Quit = true;
                 }
 
+                //When the Lives are over the game ends
                 if (Player.Lives <= 0)
                 {
                     Quit = true;
@@ -67,6 +69,7 @@ namespace CODE_GameLib
                     throw new NotImplementedException("This direction has not been implemented yet");
             }
 
+            //Player cannot run into the border
             if (IsBorderTile(player.Room, nextX, nextY))
             {
                 return false;
@@ -82,12 +85,14 @@ namespace CODE_GameLib
                 }
             }
 
+            //If the player is not in the room, the player is in a passageway
             if (!IsInRoom(room, nextX, nextY, out var exitDirection))
             {
                 var connection = room.Connections[exitDirection];
 
                 room = connection.TargetRoom;
 
+                //Ensures that the player arrives at the correct coordinates in the new room
                 switch (connection.TargetDirection)
                 {
                     case Direction.NORTH:
@@ -121,10 +126,12 @@ namespace CODE_GameLib
             return IsInRoom(room, x, y, out var direction);
         }
 
+        //Checks if the player is still in the room by using the coordinates
         public bool IsInRoom(RoomBase room, int x, int y, out Direction direction)
         {
             direction = Direction.NORTH;
 
+            //Checks which direction the player goes when he leaves the room
             if (x < 0)
             {
                 direction = Direction.WEST;
@@ -161,9 +168,11 @@ namespace CODE_GameLib
             return x == room.Width - 1 || x == 0 || y == room.Height - 1 || y == 0;
         }
 
+        //Looks if there is a connection and returns direction it if so
         public bool HasConnection(RoomBase room, int x, int y, out Direction direction)
         {
             direction = Direction.NORTH;
+
 
             if (x == room.Width / 2)
             {
