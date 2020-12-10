@@ -13,7 +13,7 @@ namespace CODE_GameLib
         public int X { get; private set; }
         public int Y { get; private set; }
 
-        public ObservableCollection<IRoomItem> Items { get; set; }
+        public ObservableCollection<IItem> Items { get; set; }
 
         public Player(int lives, RoomBase room, int x, int y)
         {
@@ -22,7 +22,7 @@ namespace CODE_GameLib
             X = x;
             Y = y;
             
-            Items = new ObservableCollection<IRoomItem>();
+            Items = new ObservableCollection<IItem>();
         }
 
         public void Move(int x, int y)
@@ -44,7 +44,7 @@ namespace CODE_GameLib
             Lives -= damage;
         }
 
-        public void AddItem(IRoomItem item)
+        public void AddItem(IItem item)
         {
             Items.Add(item);
         }

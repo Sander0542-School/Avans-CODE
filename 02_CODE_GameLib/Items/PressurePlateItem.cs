@@ -3,12 +3,12 @@ using CODE_GameLib.Doors;
 
 namespace CODE_GameLib.Items
 {
-    public class PressurePlateRoomItem : IRoomItem
+    public class PressurePlateItem : IItem
     {
         public int X { get; private set; }
         public int Y { get; private set; }
 
-        public PressurePlateRoomItem(int x, int y)
+        public PressurePlateItem(int x, int y)
         {
             X = x;
             Y = y;

@@ -14,7 +14,7 @@ namespace CODE_GameLib.Doors
 
         public bool IsOpen(Player player)
         {
-            return player.Items.Any(item => item is KeyRoomItem && ((KeyRoomItem)item).Color == _color);
+            return player.Items.Any(item => item is KeyItem && ((KeyItem)item).Color == _color);
         }
 
         public void AfterUse(Player player)

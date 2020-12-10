@@ -18,10 +18,10 @@ namespace CODE_GameLib.Rooms
             Height = height;
 
             Connections = new Dictionary<Direction, Connection>();
-            Items = new List<IRoomItem>();
+            Items = new List<IItem>();
         }
         
         public Dictionary<Direction, Connection> Connections { get; set; }
-        public List<IRoomItem> Items { get; set; }
+        public List<IItem> Items { get; set; }
     }
 }

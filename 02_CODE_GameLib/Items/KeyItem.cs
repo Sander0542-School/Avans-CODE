@@ -1,16 +1,19 @@
-﻿using System.Drawing;
-
-namespace CODE_GameLib.Items
+﻿namespace CODE_GameLib.Items
 {
-    public class SankaraStoneRoomItem : IRoomItem
+    public class KeyItem : IItem
     {
         public int X { get; private set; }
+
         public int Y { get; private set; }
 
-        public SankaraStoneRoomItem(int x, int y)
+        public string Color { get; private set; }
+
+        public KeyItem(int y, int x, string color)
         {
-            X = x;
             Y = y;
+            X = x;
+            
+            Color = color;
         }
         
         public void OnUse(Player player)

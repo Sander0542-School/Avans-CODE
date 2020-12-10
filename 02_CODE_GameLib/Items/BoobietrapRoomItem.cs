@@ -1,6 +1,6 @@
 ﻿namespace CODE_GameLib.Items
 {
-    public class BoobietrapRoomItem : IRoomItem
+    public class BoobietrapRoomItem : IItem
     {
         public int X { get; private set; }
         

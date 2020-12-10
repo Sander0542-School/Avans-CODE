@@ -14,7 +14,7 @@ namespace CODE_FileSystem
     public class GameReader
     {
         private readonly RoomFactory _roomFactory = new RoomFactory();
-        private readonly RoomItemFactory _roomItemFactory = new RoomItemFactory();
+        private readonly ItemFactory _roomItemFactory = new ItemFactory();
         private readonly DoorFactory _doorFactory = new DoorFactory();
 
         public Game Read(string filePath)
@@ -58,7 +58,7 @@ namespace CODE_FileSystem
 
                 var room = _roomFactory.CreateRoom(type, id, height, width);
 
-                room.Items = jsonRoom["items"] != null ? GetRoomItems(jsonRoom["items"]) : new List<IRoomItem>();
+                room.Items = jsonRoom["items"] != null ? GetRoomItems(jsonRoom["items"]) : new List<IItem>();
 
                 return room;
             }
@@ -73,9 +73,9 @@ namespace CODE_FileSystem
             }
         }
 
-        private List<IRoomItem> GetRoomItems(JToken jsonItems)
+        private List<IItem> GetRoomItems(JToken jsonItems)
         {
-            var items = new List<IRoomItem>();
+            var items = new List<IItem>();
 
             foreach (var jsonItem in jsonItems)
             {
@@ -113,10 +113,12 @@ namespace CODE_FileSystem
             }
         }
 
+        //Gets the connections from the json and adds them to the rooms
         private void ApplyConnection(JToken jsonConnections, IEnumerable<RoomBase> rooms)
         {
             try
             {
+                //Each connection is added to a room
                 foreach (var jsonConnection in jsonConnections)
                 {
                     var directions = GetConnectionDirections(jsonConnection);
@@ -126,6 +128,7 @@ namespace CODE_FileSystem
 
                     var door = GetConnectionDoor(jsonConnection);
 
+                    //Each connection connects 2 rooms
                     roomOne.Connections.Add(directions.Last().Key, new Connection
                     {
                         TargetRoom = rooms.First(room => room.Id == directions.Last().Value),
@@ -147,8 +150,10 @@ namespace CODE_FileSystem
             }
         }
 
+        //Gets the door belonging to the connection
         private IDoor GetConnectionDoor(JToken jsonConnection)
         {
+            //Connection does not always have a door
             if (jsonConnection["door"] == null)
             {
                 return null;
@@ -164,10 +169,12 @@ namespace CODE_FileSystem
             return _doorFactory.CreateDoor(type, options);
         }
 
+        //Retrieves the derection of the connection
         private IDictionary<Direction, int> GetConnectionDirections(JToken jsonConnection)
         {
             var directions = new Dictionary<Direction, int>();
 
+            //Check for each possible direction if it is linked to the connection
             foreach (Direction direction in Enum.GetValues(typeof(Direction)))
             {
                 if (jsonConnection[direction.ToString()] != null)
@@ -176,6 +183,7 @@ namespace CODE_FileSystem
                 }
             }
 
+            //Each connection must have a passageway and an exit
             if (directions.Count != 2)
             {
                 throw new ArgumentException("The connection is not valid.");

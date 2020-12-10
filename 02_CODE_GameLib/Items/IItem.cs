@@ -2,7 +2,7 @@
 
 namespace CODE_GameLib.Items
 {
-    public interface IRoomItem : ICoordinates
+    public interface IItem : ICoordinates
     {
         void OnUse(Player player);
     }

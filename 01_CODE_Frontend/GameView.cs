@@ -16,6 +16,7 @@ namespace CODE_Frontend
             Console.WriteLine("Please hit any keys or hit escape to exit...");
         }
 
+        //generates the display
         public void Draw(Game game)
         {
             Console.Clear();
@@ -32,6 +33,7 @@ namespace CODE_Frontend
 
                 var room = game.Player.Room;
 
+                //Generates the room by height and width
                 for (var y = 0; y < room.Height; y++)
                 {
                     Console.Write("| ");
@@ -77,8 +79,8 @@ namespace CODE_Frontend
                 Console.WriteLine("|");
                 Console.WriteLine("+-------------------------------------------------");
                 Console.WriteLine($"| Lives:  {game.Player.Lives}");
-                Console.WriteLine($"| Stones: {game.Player.Items.Count(item => item is SankaraStoneRoomItem)}");
-                Console.WriteLine($"| Keys:   {string.Join(", ", game.Player.Items.Where(item => item is KeyRoomItem).Select(item => ((KeyRoomItem) item).Color))}");
+                Console.WriteLine($"| Stones: {game.Player.Items.Count(item => item is SankaraStoneItem)}");
+                Console.WriteLine($"| Keys:   {string.Join(", ", game.Player.Items.Where(item => item is KeyItem).Select(item => ((KeyItem) item).Color))}");
                 Console.WriteLine("+-------------------------------------------------");
                 Console.WriteLine("| A game for the course Code Development (20/21) by Tommy den Reijer and Sander Jochems.");
                 Console.WriteLine("+-------------------------------------------------");

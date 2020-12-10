@@ -29,7 +29,7 @@ namespace CODE_GameLib
             {
                 Player.Move(room, nextX, nextY);
 
-                if (!Rooms.Any(room1 => room1.Items.Any(item => item is SankaraStoneRoomItem)))
+                if (!Rooms.Any(room1 => room1.Items.Any(item => item is SankaraStoneItem)))
                 {
                     Quit = true;
                 }
