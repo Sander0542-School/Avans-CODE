@@ -23,6 +23,7 @@ namespace CODE_Frontend
             
             while (!game.Quit)
             {
+                //If the game is in progress, check which keys the user is using to move the player
                 switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.Escape:

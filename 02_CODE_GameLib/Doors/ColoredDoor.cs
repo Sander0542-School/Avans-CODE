@@ -6,7 +6,7 @@ namespace CODE_GameLib.Doors
     public class ColoredDoor : IDoor
     {
         private string _color;
-        
+
         public ColoredDoor(string color)
         {
             _color = color;
@@ -19,7 +19,7 @@ namespace CODE_GameLib.Doors
 
         public void AfterUse(Player player)
         {
-            
+
         }
     }
 }

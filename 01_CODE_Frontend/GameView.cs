@@ -80,7 +80,7 @@ namespace CODE_Frontend
                 Console.WriteLine("+-------------------------------------------------");
                 Console.WriteLine($"| Lives:  {game.Player.Lives}");
                 Console.WriteLine($"| Stones: {game.Player.Items.Count(item => item is SankaraStoneItem)}");
-                Console.WriteLine($"| Keys:   {string.Join(", ", game.Player.Items.Where(item => item is KeyItem).Select(item => ((KeyItem) item).Color))}");
+                Console.WriteLine($"| Keys:   {string.Join(", ", game.Player.Items.Where(item => item is KeyItem).Select(item => ((KeyItem)item).Color))}");
                 Console.WriteLine("+-------------------------------------------------");
                 Console.WriteLine("| A game for the course Code Development (20/21) by Tommy den Reijer and Sander Jochems.");
                 Console.WriteLine("+-------------------------------------------------");
@@ -97,7 +97,7 @@ namespace CODE_Frontend
             index |= (color.R > 64) ? 4 : 0; // Red bit
             index |= (color.G > 64) ? 2 : 0; // Green bit
             index |= (color.B > 64) ? 1 : 0; // Blue bit
-            return (ConsoleColor) index;
+            return (ConsoleColor)index;
         }
 
         private ConsoleColor GetBackgroundColor(int x, int y)

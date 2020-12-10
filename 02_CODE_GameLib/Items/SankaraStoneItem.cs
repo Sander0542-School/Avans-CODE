@@ -12,7 +12,7 @@ namespace CODE_GameLib.Items
             X = x;
             Y = y;
         }
-        
+
         public void OnUse(Player player)
         {
             player.AddItem(this);

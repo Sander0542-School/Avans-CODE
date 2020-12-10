@@ -8,7 +8,6 @@ namespace CODE_GameLib
         public RoomBase TargetRoom { get; set; }
         public Direction TargetDirection { get; set; }
 
-
         public IDoor Door { get; set; }
     }
 }

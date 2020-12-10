@@ -88,7 +88,7 @@ namespace CODE_FileSystem
                 options.Remove("x");
                 options.Remove("y");
 
-                items.Add(_roomItemFactory.CreateRoomItem(type, x, y, options));
+                items.Add(_roomItemFactory.CreateItem(type, x, y, options));
             }
 
             return items;
@@ -160,7 +160,7 @@ namespace CODE_FileSystem
             }
 
             var jsonDoor = jsonConnection["door"];
-            
+
             var type = jsonDoor["type"].ToString();
 
             var options = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonDoor.ToString());

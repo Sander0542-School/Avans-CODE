@@ -18,7 +18,7 @@ namespace CODE_GameLib.Items
         {
             foreach (var connection in player.Room.Connections.Values.Where(connection => connection.Door is ToggleDoor))
             {
-                ((ToggleDoor) connection.Door).Toggle();
+                ((ToggleDoor)connection.Door).Toggle();
             }
         }
     }

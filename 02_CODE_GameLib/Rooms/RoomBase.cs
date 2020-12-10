@@ -7,7 +7,7 @@ namespace CODE_GameLib.Rooms
     public abstract class RoomBase
     {
         public int Id { get; set; }
-        
+
         public int Width { get; set; }
         public int Height { get; set; }
 
@@ -20,7 +20,7 @@ namespace CODE_GameLib.Rooms
             Connections = new Dictionary<Direction, Connection>();
             Items = new List<IItem>();
         }
-        
+
         public Dictionary<Direction, Connection> Connections { get; set; }
         public List<IItem> Items { get; set; }
     }

@@ -5,7 +5,8 @@ namespace CODE_GameLib.Items
 {
     public class ItemFactory
     {
-        public IItem CreateRoomItem(string type, int x, int y, IDictionary<string, string> options)
+        //Generates an Item according to the type
+        public IItem CreateItem(string type, int x, int y, IDictionary<string, string> options)
         {
             IItem roomItem;
 

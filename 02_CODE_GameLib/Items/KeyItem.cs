@@ -12,10 +12,10 @@
         {
             Y = y;
             X = x;
-            
+
             Color = color;
         }
-        
+
         public void OnUse(Player player)
         {
             player.AddItem(this);
