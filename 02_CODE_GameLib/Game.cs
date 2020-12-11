@@ -41,8 +41,8 @@ namespace CODE_GameLib
             {
                 Player.Move(room, nextX, nextY);
 
-                //When the SakaraStone is picked up, the game ends.
-                if (!Rooms.Any(room1 => room1.Items.Any(item => item is SankaraStoneItem)))
+                //When all the SankaraStones are picked up, the game ends.
+                if (!Rooms.Any(room1 => room1.Items.Any(item => item.Visible && item.GetItem() is SankaraStoneItem)))
                 {
                     Quit = true;
                 }

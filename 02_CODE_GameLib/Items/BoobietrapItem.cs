@@ -1,18 +1,16 @@
-﻿using System.Drawing;
-
-namespace CODE_GameLib.Items
+﻿namespace CODE_GameLib.Items
 {
-    public class SankaraStoneItem : IItem
+    public class BoobietrapItem : IItem
     {
         public int X { get; }
 
         public int Y { get; }
 
         public int Damage { get; set; }
-        
+
         public bool Visible { get; set; } = true;
 
-        public SankaraStoneItem(int x, int y)
+        public BoobietrapItem(int x, int y)
         {
             X = x;
             Y = y;

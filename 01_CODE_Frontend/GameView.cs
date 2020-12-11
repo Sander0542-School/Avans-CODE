@@ -55,7 +55,7 @@ namespace CODE_Frontend
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write("#");
                     }
-                    else if (room.Items.Any(item => item.X == x && item.Y == y))
+                    else if (room.Items.Any(item => item.Visible && item.X == x && item.Y == y))
                     {
                         var item = room.Items.First(item1 => item1.X == x && item1.Y == y);
 
@@ -78,7 +78,7 @@ namespace CODE_Frontend
             Console.WriteLine("+-------------------------------------------------");
             Console.WriteLine($"| Lives:  {game.Player.Lives}");
             Console.WriteLine($"| Stones: {game.Player.Items.Count(item => item is SankaraStoneItem)}");
-            Console.WriteLine($"| Keys:   {string.Join(", ", game.Player.Items.Where(item => item is KeyItem).Select(item => ((KeyItem) item).Color))}");
+            Console.WriteLine($"| Keys:   {string.Join(", ", game.Player.Items.Where(item => item.GetItem() is KeyItem).Select(item => ((KeyItem) item.GetItem()).Color))}");
             Console.WriteLine("+-------------------------------------------------");
             Console.WriteLine("| A game for the course Code Development (20/21) by Tommy den Reijer and Sander Jochems.");
             Console.WriteLine("+-------------------------------------------------");

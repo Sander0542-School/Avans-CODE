@@ -36,7 +36,7 @@ namespace CODE_GameLib
             X = x;
             Y = y;
 
-            room.Items.FirstOrDefault(roomItem => roomItem.X == x && roomItem.Y == y)?.OnUse(this);
+            room.Items.FirstOrDefault(item => item.Visible && item.X == x && item.Y == y)?.OnUse(this);
         }
 
         public void Damage(int damage)

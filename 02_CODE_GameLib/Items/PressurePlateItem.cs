@@ -5,8 +5,13 @@ namespace CODE_GameLib.Items
 {
     public class PressurePlateItem : IItem
     {
-        public int X { get; private set; }
-        public int Y { get; private set; }
+        public int X { get; }
+
+        public int Y { get; }
+
+        public int Damage { get; set; }
+        
+        public bool Visible { get; set; } = true;
 
         public PressurePlateItem(int x, int y)
         {
@@ -18,7 +23,7 @@ namespace CODE_GameLib.Items
         {
             foreach (var connection in player.Room.Connections.Values.Where(connection => connection.Door is ToggleDoor))
             {
-                ((ToggleDoor)connection.Door).Toggle();
+                ((ToggleDoor) connection.Door).Toggle();
             }
         }
     }

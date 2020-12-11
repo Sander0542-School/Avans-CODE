@@ -2,11 +2,15 @@
 {
     public class KeyItem : IItem
     {
-        public int X { get; private set; }
+        public int X { get; }
 
-        public int Y { get; private set; }
+        public int Y { get; }
 
-        public string Color { get; private set; }
+        public int Damage { get; set; }
+        
+        public bool Visible { get; set; } = true;
+
+        public string Color { get; }
 
         public KeyItem(int y, int x, string color)
         {
@@ -18,8 +22,6 @@
 
         public void OnUse(Player player)
         {
-            player.AddItem(this);
-            player.Room.Items.Remove(this);
         }
     }
 }
