@@ -146,9 +146,9 @@ namespace CODE_GameLib
         }
 
         //Looks if there is a connection and returns direction and connection it if so
-        public bool HasConnection(RoomBase room, int x, int y) => HasConnection(room, x, y, out var direction, out var connection);
+        public bool HasConnection(RoomBase room, int x, int y) => HasConnection(room, x, y, out _, out _);
 
-        public bool HasConnection(RoomBase room, int x, int y, out Direction direction) => HasConnection(room, x, y, out direction, out var connection);
+        public bool HasConnection(RoomBase room, int x, int y, out Direction direction) => HasConnection(room, x, y, out direction, out _);
 
         public bool HasConnection(RoomBase room, int x, int y, out Direction direction, out Connection connection)
         {
