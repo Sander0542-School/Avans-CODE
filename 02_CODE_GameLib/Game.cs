@@ -157,33 +157,29 @@ namespace CODE_GameLib
 
             if (x == room.Width / 2)
             {
-                if (y == 0 && room.Connections.ContainsKey(Direction.NORTH))
+                if (y == 0 && room.Connections.TryGetValue(Direction.NORTH, out connection))
                 {
                     direction = Direction.NORTH;
-                    connection = room.Connections[direction];
                     return true;
                 }
 
-                if (y == room.Height - 1 && room.Connections.ContainsKey(Direction.SOUTH))
+                if (y == room.Height - 1 && room.Connections.TryGetValue(Direction.SOUTH, out connection))
                 {
                     direction = Direction.SOUTH;
-                    connection = room.Connections[direction];
                     return true;
                 }
             }
             else if (y == room.Height / 2)
             {
-                if (x == 0 && room.Connections.ContainsKey(Direction.WEST))
+                if (x == 0 && room.Connections.TryGetValue(Direction.WEST, out connection))
                 {
                     direction = Direction.WEST;
-                    connection = room.Connections[direction];
                     return true;
                 }
 
-                if (x == room.Width - 1 && room.Connections.ContainsKey(Direction.EAST))
+                if (x == room.Width - 1 && room.Connections.TryGetValue(Direction.EAST, out connection))
                 {
                     direction = Direction.EAST;
-                    connection = room.Connections[direction];
                     return true;
                 }
             }
