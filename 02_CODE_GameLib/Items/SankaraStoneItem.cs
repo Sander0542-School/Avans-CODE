@@ -9,7 +9,7 @@ namespace CODE_GameLib.Items
         public int Y { get; }
 
         public int Damage { get; set; }
-        
+
         public bool Visible { get; set; } = true;
 
         public SankaraStoneItem(int x, int y)

@@ -2,6 +2,9 @@
 using CODE_GameLib;
 using System;
 using System.Text;
+using CODE_FileSystem.Factories;
+using CODE_FileSystem.Factories.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CODE_Frontend
 {
@@ -14,7 +17,14 @@ namespace CODE_Frontend
             Console.WindowHeight = 50;
             Console.CursorVisible = false;
 
-            var reader = new GameReader(); //TODO DI Container
+            var serviceProvider = new ServiceCollection()
+                .AddSingleton<IRoomFactory, RoomFactory>()
+                .AddSingleton<IItemFactory, ItemFactory>()
+                .AddSingleton<IDoorFactory, DoorFactory>()
+                .AddTransient<GameReader>()
+                .BuildServiceProvider();
+
+            var reader = serviceProvider.GetService<GameReader>();
             var game = reader.Read(@"./Levels/TempleOfDoom.json");
             
             var inputView = new InputView(game);

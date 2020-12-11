@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using CODE_FileSystem.Factories.Interfaces;
+using CODE_GameLib.Items;
 using CODE_GameLib.Items.Decorators;
 
-namespace CODE_GameLib.Items
+namespace CODE_FileSystem.Factories
 {
-    public class ItemFactory
+    public class ItemFactory : IItemFactory
     {
         //Generates an Item according to the type
         public IItem CreateItem(string type, int x, int y, IDictionary<string, string> options)

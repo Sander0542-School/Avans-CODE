@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CODE_FileSystem.Factories.Interfaces;
 using CODE_GameLib;
 using CODE_GameLib.Doors;
 using CODE_GameLib.Items;
@@ -13,9 +14,16 @@ namespace CODE_FileSystem
 {
     public class GameReader
     {
-        private readonly RoomFactory _roomFactory = new RoomFactory();
-        private readonly ItemFactory _roomItemFactory = new ItemFactory();
-        private readonly DoorFactory _doorFactory = new DoorFactory();
+        private readonly IRoomFactory _roomFactory;
+        private readonly IItemFactory _roomItemFactory;
+        private readonly IDoorFactory _doorFactory;
+
+        public GameReader(IRoomFactory roomFactory, IItemFactory roomItemFactory, IDoorFactory doorFactory)
+        {
+            _roomFactory = roomFactory;
+            _roomItemFactory = roomItemFactory;
+            _doorFactory = doorFactory;
+        }
 
         public Game Read(string filePath)
         {
