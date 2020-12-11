@@ -63,45 +63,8 @@ namespace CODE_GameLib
             nextY = player.Y;
             room = player.Room;
 
-            switch (direction)
+            if (HasConnection(room, nextX, nextY, out var doorDirection, out var connection) && direction == doorDirection)
             {
-                case Direction.NORTH:
-                    nextY--;
-                    break;
-                case Direction.EAST:
-                    nextX++;
-                    break;
-                case Direction.SOUTH:
-                    nextY++;
-                    break;
-                case Direction.WEST:
-                    nextX--;
-                    break;
-                default:
-                    throw new NotImplementedException("This direction has not been implemented yet");
-            }
-
-            //Player cannot run into the border
-            if (IsBorderTile(player.Room, nextX, nextY))
-            {
-                return false;
-            }
-
-            if (HasConnection(room, nextX, nextY, out var doorDirection))
-            {
-                var connection = room.Connections[doorDirection];
-
-                if (connection.Door != null && !connection.Door.IsOpen(player))
-                {
-                    return false;
-                }
-            }
-
-            //If the player is not in the room, the player is in a passageway
-            if (!IsInRoom(room, nextX, nextY, out var exitDirection))
-            {
-                var connection = room.Connections[exitDirection];
-
                 if (!(connection?.Door?.IsOpen(player) ?? true))
                 {
                     return false;
@@ -133,51 +96,48 @@ namespace CODE_GameLib
                 }
 
                 connection.Door?.AfterUse(player);
+
+                return true;
+            }
+
+            switch (direction)
+            {
+                case Direction.NORTH:
+                    nextY--;
+                    break;
+                case Direction.EAST:
+                    nextX++;
+                    break;
+                case Direction.SOUTH:
+                    nextY++;
+                    break;
+                case Direction.WEST:
+                    nextX--;
+                    break;
+                default:
+                    throw new NotImplementedException("This direction has not been implemented yet");
+            }
+
+            //Player cannot run into the border
+            if (IsBorderTile(player.Room, nextX, nextY))
+            {
+                return false;
+            }
+
+            if (HasConnection(room, nextX, nextY, out doorDirection, out connection))
+            {
+                if (connection.Door != null && !connection.Door.IsOpen(player))
+                {
+                    return false;
+                }
             }
 
             return true;
         }
 
-        public bool IsInRoom(RoomBase room, int x, int y)
-        {
-            return IsInRoom(room, x, y, out var direction);
-        }
-
-        //Checks if the player is still in the room by using the coordinates
-        public bool IsInRoom(RoomBase room, int x, int y, out Direction direction)
-        {
-            direction = Direction.NORTH;
-
-            //Checks which direction the player goes when he leaves the room
-            if (x < 0)
-            {
-                direction = Direction.WEST;
-            }
-            else if (x >= room.Width)
-            {
-                direction = Direction.EAST;
-            }
-            else if (y < 0)
-            {
-                direction = Direction.NORTH;
-            }
-            else if (y >= room.Height)
-            {
-                direction = Direction.SOUTH;
-            }
-            else
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        public bool IsBorderTile(int x, int y) => IsBorderTile(Player.Room, x, y);
-
         public bool IsBorderTile(RoomBase room, int x, int y)
         {
-            if (HasConnection(room, x, y, out var direction))
+            if (HasConnection(room, x, y))
             {
                 return false;
             }
@@ -185,23 +145,29 @@ namespace CODE_GameLib
             return x == room.Width - 1 || x == 0 || y == room.Height - 1 || y == 0;
         }
 
-        //Looks if there is a connection and returns direction it if so
-        public bool HasConnection(RoomBase room, int x, int y, out Direction direction)
+        //Looks if there is a connection and returns direction and connection it if so
+        public bool HasConnection(RoomBase room, int x, int y) => HasConnection(room, x, y, out var direction, out var connection);
+
+        public bool HasConnection(RoomBase room, int x, int y, out Direction direction) => HasConnection(room, x, y, out direction, out var connection);
+
+        public bool HasConnection(RoomBase room, int x, int y, out Direction direction, out Connection connection)
         {
             direction = Direction.NORTH;
-
+            connection = null;
 
             if (x == room.Width / 2)
             {
                 if (y == 0 && room.Connections.ContainsKey(Direction.NORTH))
                 {
                     direction = Direction.NORTH;
+                    connection = room.Connections[direction];
                     return true;
                 }
 
                 if (y == room.Height - 1 && room.Connections.ContainsKey(Direction.SOUTH))
                 {
                     direction = Direction.SOUTH;
+                    connection = room.Connections[direction];
                     return true;
                 }
             }
@@ -210,12 +176,14 @@ namespace CODE_GameLib
                 if (x == 0 && room.Connections.ContainsKey(Direction.WEST))
                 {
                     direction = Direction.WEST;
+                    connection = room.Connections[direction];
                     return true;
                 }
 
                 if (x == room.Width - 1 && room.Connections.ContainsKey(Direction.EAST))
                 {
                     direction = Direction.EAST;
+                    connection = room.Connections[direction];
                     return true;
                 }
             }
