@@ -65,7 +65,7 @@ namespace CODE_GameLib
 
             if (HasConnection(room, nextX, nextY, out var doorDirection, out var connection) && direction == doorDirection)
             {
-                if (!(connection?.Door?.IsOpen(player) ?? true))
+                if (!(connection.Door?.IsOpen(player) ?? true))
                 {
                     return false;
                 }
