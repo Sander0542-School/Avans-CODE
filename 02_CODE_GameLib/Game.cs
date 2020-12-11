@@ -102,6 +102,11 @@ namespace CODE_GameLib
             {
                 var connection = room.Connections[exitDirection];
 
+                if (!(connection?.Door?.IsOpen(player) ?? true))
+                {
+                    return false;
+                }
+
                 room = connection.TargetRoom;
 
                 //Ensures that the player arrives at the correct coordinates in the new room
