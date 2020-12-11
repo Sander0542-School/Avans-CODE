@@ -51,10 +51,10 @@ namespace CODE_FileSystem
         {
             try
             {
-                var type = jsonRoom["type"].ToString();
-                var id = int.Parse(jsonRoom["id"].ToString());
-                var width = int.Parse(jsonRoom["width"].ToString());
-                var height = int.Parse(jsonRoom["height"].ToString());
+                var type = jsonRoom["type"].Value<string>();
+                var id = jsonRoom["id"].Value<int>();
+                var width = jsonRoom["width"].Value<int>();
+                var height = jsonRoom["height"].Value<int>();
 
                 var room = _roomFactory.CreateRoom(type, id, height, width);
 
@@ -79,9 +79,9 @@ namespace CODE_FileSystem
 
             foreach (var jsonItem in jsonItems)
             {
-                var type = jsonItem["type"].ToString();
-                var x = int.Parse(jsonItem["x"].ToString());
-                var y = int.Parse(jsonItem["y"].ToString());
+                var type = jsonItem["type"].Value<string>();
+                var x = jsonItem["x"].Value<int>();
+                var y = jsonItem["y"].Value<int>();
 
                 var options = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonItem.ToString());
                 options.Remove("type");
@@ -161,7 +161,7 @@ namespace CODE_FileSystem
 
             var jsonDoor = jsonConnection["door"];
 
-            var type = jsonDoor["type"].ToString();
+            var type = jsonDoor["type"].Value<string>();
 
             var options = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonDoor.ToString());
             options.Remove("type");
@@ -179,7 +179,7 @@ namespace CODE_FileSystem
             {
                 if (jsonConnection[direction.ToString()] != null)
                 {
-                    directions.Add(direction, int.Parse(jsonConnection[direction.ToString()].ToString()));
+                    directions.Add(direction, jsonConnection[direction.ToString()].Value<int>());
                 }
             }
 
