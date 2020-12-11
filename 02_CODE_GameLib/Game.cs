@@ -8,11 +8,23 @@ namespace CODE_GameLib
 {
     public class Game
     {
+        private bool _quit = false;
+
         public event EventHandler<Game> Updated;
 
         public Player Player { get; private set; }
         public List<RoomBase> Rooms { get; private set; }
-        public bool Quit { get; set; } = false;
+
+        public bool Quit
+        {
+            get => _quit;
+            set
+            {
+                _quit = value;
+                Updated?.Invoke(this, this);
+            }
+        }
+
         public string Level { get; set; }
 
         public Game(string level, List<RoomBase> rooms, Player player)
@@ -114,7 +126,7 @@ namespace CODE_GameLib
                     default:
                         throw new NotImplementedException("This entrance direction is not yet supported");
                 }
-                
+
                 connection.Door?.AfterUse(player);
             }
 

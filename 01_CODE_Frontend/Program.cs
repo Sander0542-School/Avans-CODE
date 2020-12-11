@@ -27,6 +27,9 @@ namespace CODE_Frontend
             {
                 inputView.AskForInput();
             }
+            
+            Console.Clear();
+            Console.WriteLine("Thanks for playing Temple of Doom");
         }
     }
 }
