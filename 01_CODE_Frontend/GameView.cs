@@ -21,74 +21,67 @@ namespace CODE_Frontend
         {
             Console.Clear();
 
-            if (!game.Quit)
+            Console.WriteLine("+-------------------------------------------------");
+
+            Console.WriteLine("| Welcome to the Temple of Doom!");
+            Console.WriteLine($"| Current level: {game.Level}");
+
+            Console.WriteLine("+-------------------------------------------------");
+            Console.WriteLine("|");
+
+            var room = game.Player.Room;
+
+            //Generates the room by height and width
+            for (var y = 0; y < room.Height; y++)
             {
-                Console.WriteLine("+-------------------------------------------------");
-
-                Console.WriteLine("| Welcome to the Temple of Doom!");
-                Console.WriteLine($"| Current level: {game.Level}");
-
-                Console.WriteLine("+-------------------------------------------------");
-                Console.WriteLine("|");
-
-                var room = game.Player.Room;
-
-                //Generates the room by height and width
-                for (var y = 0; y < room.Height; y++)
+                Console.Write("|   ");
+                for (var x = 0; x < room.Width; x++)
                 {
-                    Console.Write("| ");
-                    for (var x = 0; x < room.Width; x++)
+                    Console.BackgroundColor = GetBackgroundColor(x, y);
+                    Console.Write(" ");
+                    if (game.Player.X == x && game.Player.Y == y)
                     {
-                        Console.BackgroundColor = GetBackgroundColor(x, y);
+                        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                        Console.Write("P");
+                    }
+                    else if (game.HasConnection(room, x, y, out var direction))
+                    {
+                        var connection = room.Connections[direction];
+
+                        Console.Write(connection.Door != null ? "D" : " ");
+                    }
+                    else if (game.IsBorderTile(room, x, y))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("#");
+                    }
+                    else if (room.Items.Any(item => item.X == x && item.Y == y))
+                    {
+                        var item = room.Items.First(item1 => item1.X == x && item1.Y == y);
+
+                        // Console.ForegroundColor = FromColor(item.GetColor());
+                        Console.Write("I");
+                    }
+                    else
+                    {
                         Console.Write(" ");
-                        if (game.Player.X == x && game.Player.Y == y)
-                        {
-                            Console.ForegroundColor = ConsoleColor.DarkBlue;
-                            Console.Write("P");
-                        }
-                        else if (game.HasConnection(room, x, y, out var direction))
-                        {
-                            var connection = room.Connections[direction];
-
-                            Console.Write(connection.Door != null ? "D" : " ");
-                        }
-                        else if (game.IsBorderTile(room, x, y))
-                        {
-                            Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write("#");
-                        }
-                        else if (room.Items.Any(item => item.X == x && item.Y == y))
-                        {
-                            var item = room.Items.First(item1 => item1.X == x && item1.Y == y);
-
-                            // Console.ForegroundColor = FromColor(item.GetColor());
-                            Console.Write("I");
-                        }
-                        else
-                        {
-                            Console.Write(" ");
-                        }
-
-                        Console.Write(" ");
-                        Console.ResetColor();
                     }
 
-                    Console.WriteLine();
+                    Console.Write(" ");
+                    Console.ResetColor();
                 }
 
-                Console.WriteLine("|");
-                Console.WriteLine("+-------------------------------------------------");
-                Console.WriteLine($"| Lives:  {game.Player.Lives}");
-                Console.WriteLine($"| Stones: {game.Player.Items.Count(item => item is SankaraStoneItem)}");
-                Console.WriteLine($"| Keys:   {string.Join(", ", game.Player.Items.Where(item => item is KeyItem).Select(item => ((KeyItem)item).Color))}");
-                Console.WriteLine("+-------------------------------------------------");
-                Console.WriteLine("| A game for the course Code Development (20/21) by Tommy den Reijer and Sander Jochems.");
-                Console.WriteLine("+-------------------------------------------------");
+                Console.WriteLine();
             }
-            else
-            {
-                Console.WriteLine("Quitting game, goodbye!");
-            }
+
+            Console.WriteLine("|");
+            Console.WriteLine("+-------------------------------------------------");
+            Console.WriteLine($"| Lives:  {game.Player.Lives}");
+            Console.WriteLine($"| Stones: {game.Player.Items.Count(item => item is SankaraStoneItem)}");
+            Console.WriteLine($"| Keys:   {string.Join(", ", game.Player.Items.Where(item => item is KeyItem).Select(item => ((KeyItem) item).Color))}");
+            Console.WriteLine("+-------------------------------------------------");
+            Console.WriteLine("| A game for the course Code Development (20/21) by Tommy den Reijer and Sander Jochems.");
+            Console.WriteLine("+-------------------------------------------------");
         }
 
         public static ConsoleColor FromColor(Color color)
@@ -97,7 +90,7 @@ namespace CODE_Frontend
             index |= (color.R > 64) ? 4 : 0; // Red bit
             index |= (color.G > 64) ? 2 : 0; // Green bit
             index |= (color.B > 64) ? 1 : 0; // Blue bit
-            return (ConsoleColor)index;
+            return (ConsoleColor) index;
         }
 
         private ConsoleColor GetBackgroundColor(int x, int y)
