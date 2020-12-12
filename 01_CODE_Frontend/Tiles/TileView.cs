@@ -6,14 +6,12 @@ namespace CODE_Frontend.Tiles
     public abstract class TileView<T> : ITileView
     {
         protected readonly T Tile;
-        protected readonly Direction Direction;
 
         public ConsoleColor BackgroundColor { get; set; }
-        
-        public TileView(T tile, Direction direction)
+
+        protected TileView(T tile)
         {
             Tile = tile;
-            Direction = direction;
         }
 
         public virtual string GetIcon()

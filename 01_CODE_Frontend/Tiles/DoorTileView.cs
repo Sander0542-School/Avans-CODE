@@ -6,8 +6,10 @@ namespace CODE_Frontend.Tiles
 {
     public class DoorTileView : TileView<IDoor>
     {
-        public DoorTileView(IDoor tile, Direction direction) : base(tile, direction)
+        private readonly Direction _direction;
+        public DoorTileView(IDoor tile, Direction direction) : base(tile)
         {
+            _direction = direction;
         }
 
         public override string GetIcon()
@@ -15,7 +17,7 @@ namespace CODE_Frontend.Tiles
             return Tile switch
             {
                 ClosingGateDoor _ => "∩",
-                ColoredDoor _ => Direction == Direction.NORTH || Direction == Direction.SOUTH ? "=" : "|",
+                ColoredDoor _ => _direction == Direction.NORTH || _direction == Direction.SOUTH ? "=" : "|",
                 ToggleDoor _ => "⊥",
                 _ => base.GetIcon()
             };

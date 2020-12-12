@@ -60,7 +60,7 @@ namespace CODE_Frontend
                     {
                         var item = room.Items.First(item1 => item1.X == x && item1.Y == y);
 
-                        tileView = new ItemTileView(item, Direction.NORTH);
+                        tileView = new ItemTileView(item);
                     }
 
                     tileView.BackgroundColor = GetBackgroundColor(x, y);

@@ -7,7 +7,7 @@ namespace CODE_Frontend.Tiles
 {
     public class ItemTileView : TileView<IItem>
     {
-        public ItemTileView(IItem item, Direction direction) : base(item, direction)
+        public ItemTileView(IItem item) : base(item)
         {
         }
 
