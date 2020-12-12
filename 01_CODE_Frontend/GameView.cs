@@ -1,12 +1,8 @@
-﻿using CODE_GameLib;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System;
 using System.Linq;
-using System.Text;
 using CODE_Frontend.Tiles;
+using CODE_GameLib;
 using CODE_GameLib.Items;
-using CODE_GameLib.Rooms;
 
 namespace CODE_Frontend
 {
@@ -18,7 +14,7 @@ namespace CODE_Frontend
         }
 
         /// <summary>
-        /// Generates the display
+        ///     Generates the display
         /// </summary>
         /// <param name="game"></param>
         public void Draw(Game game)
@@ -81,7 +77,7 @@ namespace CODE_Frontend
         }
 
         /// <summary>
-        /// Gets the colour from the box on the board
+        ///     Gets the colour from the box on the board
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -91,15 +87,9 @@ namespace CODE_Frontend
             var xIsEven = x % 2 == 0;
             var yIsEven = y % 2 == 0;
 
-            if (xIsEven && yIsEven)
-            {
-                return ConsoleColor.DarkGray;
-            }
+            if (xIsEven && yIsEven) return ConsoleColor.DarkGray;
 
-            if (!xIsEven && !yIsEven)
-            {
-                return ConsoleColor.DarkGray;
-            }
+            if (!xIsEven && !yIsEven) return ConsoleColor.DarkGray;
 
             return ConsoleColor.Black;
         }

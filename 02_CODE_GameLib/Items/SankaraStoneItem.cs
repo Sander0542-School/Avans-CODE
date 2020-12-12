@@ -1,9 +1,13 @@
-﻿using System.Drawing;
-
-namespace CODE_GameLib.Items
+﻿namespace CODE_GameLib.Items
 {
     public class SankaraStoneItem : IItem
     {
+        public SankaraStoneItem(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+
         public int X { get; }
 
         public int Y { get; }
@@ -11,12 +15,6 @@ namespace CODE_GameLib.Items
         public int Damage { get; set; }
 
         public bool Visible { get; set; } = true;
-
-        public SankaraStoneItem(int x, int y)
-        {
-            X = x;
-            Y = y;
-        }
 
         public void OnUse(Player player)
         {

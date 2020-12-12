@@ -2,8 +2,8 @@
 {
     public class ToggleDoor : IDoor
     {
-        private bool _open = false;
-        
+        private bool _open;
+
         public bool IsOpen(Player player)
         {
             return _open;
@@ -11,7 +11,6 @@
 
         public void AfterUse(Player player)
         {
-            
         }
 
         public void Toggle()

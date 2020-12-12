@@ -7,26 +7,26 @@ namespace CODE_GameLib
 {
     public class Player : ICoordinates
     {
-        public int Lives { get; private set; }
-
-        public RoomBase Room { get; private set; }
-        public int X { get; private set; }
-        public int Y { get; private set; }
-
-        public ObservableCollection<IItem> Items { get; }
-
         public Player(int lives, RoomBase room, int x, int y)
         {
             Lives = lives;
             Room = room;
             X = x;
             Y = y;
-            
+
             Items = new ObservableCollection<IItem>();
         }
 
+        public int Lives { get; private set; }
+
+        public RoomBase Room { get; private set; }
+
+        public ObservableCollection<IItem> Items { get; }
+        public int X { get; private set; }
+        public int Y { get; private set; }
+
         /// <summary>
-        /// Updates the user position for moving
+        ///     Updates the user position for moving
         /// </summary>
         /// <param name="room"></param>
         /// <param name="x"></param>
@@ -41,7 +41,7 @@ namespace CODE_GameLib
         }
 
         /// <summary>
-        /// Reduce Players lives
+        ///     Reduce Players lives
         /// </summary>
         /// <param name="damage"></param>
         public void Damage(int damage)

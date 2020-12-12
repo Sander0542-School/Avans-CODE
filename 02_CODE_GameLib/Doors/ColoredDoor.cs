@@ -5,12 +5,12 @@ namespace CODE_GameLib.Doors
 {
     public class ColoredDoor : IDoor
     {
-        public string Color { get; }
-
         public ColoredDoor(string color)
         {
             Color = color;
         }
+
+        public string Color { get; }
 
         public bool IsOpen(Player player)
         {
@@ -19,7 +19,6 @@ namespace CODE_GameLib.Doors
 
         public void AfterUse(Player player)
         {
-
         }
     }
 }

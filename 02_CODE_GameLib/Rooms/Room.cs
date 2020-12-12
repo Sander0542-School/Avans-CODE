@@ -2,9 +2,8 @@
 {
     public class Room : RoomBase
     {
-        public Room(int id, int height, int width) : base( id,  height,  width)
+        public Room(int id, int height, int width) : base(id, height, width)
         {
-
         }
     }
 }

@@ -9,7 +9,7 @@
         public override void OnUse(Player player)
         {
             base.OnUse(player);
-            
+
             player.AddItem(GetItem());
         }
     }

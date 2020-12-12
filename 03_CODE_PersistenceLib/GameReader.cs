@@ -14,9 +14,9 @@ namespace CODE_FileSystem
 {
     public class GameReader
     {
+        private readonly IDoorFactory _doorFactory;
         private readonly IRoomFactory _roomFactory;
         private readonly IItemFactory _roomItemFactory;
-        private readonly IDoorFactory _doorFactory;
 
         public GameReader(IRoomFactory roomFactory, IItemFactory roomItemFactory, IDoorFactory doorFactory)
         {
@@ -26,7 +26,7 @@ namespace CODE_FileSystem
         }
 
         /// <summary>
-        /// Pares the json file to a Game object
+        ///     Pares the json file to a Game object
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace CODE_FileSystem
         }
 
         /// <summary>
-        /// Parses a Room object to a list of rooms from json
+        ///     Parses a Room object to a list of rooms from json
         /// </summary>
         /// <param name="rooms"></param>
         /// <returns></returns>
@@ -56,17 +56,14 @@ namespace CODE_FileSystem
             }
             catch (Exception exception)
             {
-                if (exception is ArgumentException || exception is NotImplementedException)
-                {
-                    throw;
-                }
+                if (exception is ArgumentException || exception is NotImplementedException) throw;
 
-                throw new ArgumentException($"The json file does not contain valid rooms");
+                throw new ArgumentException("The json file does not contain valid rooms");
             }
         }
 
         /// <summary>
-        /// Parses a Room object from json
+        ///     Parses a Room object from json
         /// </summary>
         /// <param name="jsonRoom"></param>
         /// <returns></returns>
@@ -87,17 +84,14 @@ namespace CODE_FileSystem
             }
             catch (Exception exception)
             {
-                if (exception is NotImplementedException)
-                {
-                    throw;
-                }
+                if (exception is NotImplementedException) throw;
 
                 throw new ArgumentException($"The room ({jsonRoom["id"] ?? "null"}) does not contain valid json");
             }
         }
 
         /// <summary>
-        /// Parses the Room items from Json
+        ///     Parses the Room items from Json
         /// </summary>
         /// <param name="jsonItems"></param>
         /// <returns></returns>
@@ -123,7 +117,7 @@ namespace CODE_FileSystem
         }
 
         /// <summary>
-        /// Parses the player and startroom object from Json
+        ///     Parses the player and startroom object from Json
         /// </summary>
         /// <param name="jsonPlayer"></param>
         /// <param name="rooms"></param>
@@ -143,12 +137,12 @@ namespace CODE_FileSystem
             }
             catch (Exception)
             {
-                throw new ArgumentException($"The json file does not contain a valid player");
+                throw new ArgumentException("The json file does not contain a valid player");
             }
         }
-       
+
         /// <summary>
-        /// Adds the connections from the json and adds them to the rooms
+        ///     Adds the connections from the json and adds them to the rooms
         /// </summary>
         /// <param name="jsonConnections"></param>
         /// <param name="rooms"></param>
@@ -184,22 +178,19 @@ namespace CODE_FileSystem
             }
             catch (Exception)
             {
-                throw new ArgumentException($"The json file does not contain a valid connection");
+                throw new ArgumentException("The json file does not contain a valid connection");
             }
         }
 
         /// <summary>
-        /// Gets the door belonging to the connection
+        ///     Gets the door belonging to the connection
         /// </summary>
         /// <param name="jsonConnection"></param>
         /// <returns></returns>
         private IDoor GetConnectionDoor(JToken jsonConnection)
         {
             //Connection does not always have a door
-            if (jsonConnection["door"] == null)
-            {
-                return null;
-            }
+            if (jsonConnection["door"] == null) return null;
 
             var jsonDoor = jsonConnection["door"];
 
@@ -212,7 +203,7 @@ namespace CODE_FileSystem
         }
 
         /// <summary>
-        /// Retrieves the derection of the connection
+        ///     Retrieves the derection of the connection
         /// </summary>
         /// <param name="jsonConnection"></param>
         /// <returns></returns>
@@ -222,18 +213,11 @@ namespace CODE_FileSystem
 
             //Check for each possible direction if it is linked to the connection
             foreach (Direction direction in Enum.GetValues(typeof(Direction)))
-            {
                 if (jsonConnection[direction.ToString()] != null)
-                {
                     directions.Add(direction, jsonConnection[direction.ToString()].Value<int>());
-                }
-            }
 
             //Each connection must have a passageway and an exit
-            if (directions.Count != 2)
-            {
-                throw new ArgumentException("The connection is not valid.");
-            }
+            if (directions.Count != 2) throw new ArgumentException("The connection is not valid.");
 
             return directions;
         }

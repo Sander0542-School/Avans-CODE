@@ -6,11 +6,10 @@ using CODE_GameLib.Items.Decorators;
 
 namespace CODE_FileSystem.Factories
 {
-
     public class ItemFactory : IItemFactory
     {
         /// <summary>
-        /// Generates an Item according to the type
+        ///     Generates an Item according to the type
         /// </summary>
         /// <param name="type"></param>
         /// <param name="x"></param>
@@ -51,7 +50,7 @@ namespace CODE_FileSystem.Factories
         }
 
         /// <summary>
-        /// Adds decorators to item when required
+        ///     Adds decorators to item when required
         /// </summary>
         /// <param name="item"></param>
         /// <param name="options"></param>
@@ -59,7 +58,6 @@ namespace CODE_FileSystem.Factories
         public IItem ApplyDecorators(IItem item, IDictionary<string, string> options)
         {
             foreach (var option in options)
-            {
                 switch (option.Key)
                 {
                     case "damage":
@@ -72,8 +70,7 @@ namespace CODE_FileSystem.Factories
                         item = new PickupableItemDecorator(item);
                         break;
                 }
-            }
-            
+
             return item;
         }
     }

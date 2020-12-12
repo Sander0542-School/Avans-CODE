@@ -7,16 +7,16 @@ namespace CODE_Frontend
     {
         private readonly Game _game;
 
-        public bool Quit { get; set; }
-
         public InputView(Game game)
         {
             _game = game;
             _game.Updated += (sender, game1) => Quit = game1.Quit;
         }
 
+        public bool Quit { get; set; }
+
         /// <summary>
-        /// Reads the input from the keyboard
+        ///     Reads the input from the keyboard
         /// </summary>
         public void AskForInput()
         {

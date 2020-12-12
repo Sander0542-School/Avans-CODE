@@ -1,5 +1,4 @@
 ﻿using System;
-using CODE_GameLib;
 using CODE_GameLib.Items;
 using CODE_GameLib.Items.Decorators;
 
@@ -13,10 +12,7 @@ namespace CODE_Frontend.Tiles
 
         public override string GetIcon()
         {
-            if (!Tile.Visible)
-            {
-                return base.GetIcon();
-            }
+            if (!Tile.Visible) return base.GetIcon();
 
             if (Tile.GetItem() is BoobietrapItem)
             {
@@ -24,14 +20,11 @@ namespace CODE_Frontend.Tiles
 
                 while (tile is BaseItemDecorator decoratedTile)
                 {
-                    if (decoratedTile is DisappearingItemDecorator)
-                    {
-                        return "@";
-                    }
+                    if (decoratedTile is DisappearingItemDecorator) return "@";
 
                     tile = decoratedTile.Decoratee;
                 }
-                
+
                 return "O";
             }
 

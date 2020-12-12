@@ -5,7 +5,7 @@ namespace CODE_Frontend.Tiles
     public interface ITileView
     {
         ConsoleColor BackgroundColor { get; set; }
-        
+
         string GetIcon();
         ConsoleColor GetColor();
 

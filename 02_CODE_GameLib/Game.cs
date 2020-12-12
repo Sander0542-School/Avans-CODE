@@ -1,19 +1,25 @@
-﻿using CODE_GameLib.Rooms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib.Items;
+using CODE_GameLib.Rooms;
 
 namespace CODE_GameLib
 {
     public class Game
     {
-        private bool _quit = false;
+        private bool _quit;
 
-        public event EventHandler<Game> Updated;
+        public Game(string level, List<RoomBase> rooms, Player player)
+        {
+            Level = level;
 
-        public Player Player { get; private set; }
-        public List<RoomBase> Rooms { get; private set; }
+            Rooms = rooms;
+            Player = player;
+        }
+
+        public Player Player { get; }
+        public List<RoomBase> Rooms { get; }
 
         public bool Quit
         {
@@ -27,16 +33,10 @@ namespace CODE_GameLib
 
         public string Level { get; set; }
 
-        public Game(string level, List<RoomBase> rooms, Player player)
-        {
-            Level = level;
-
-            Rooms = rooms;
-            Player = player;
-        }
+        public event EventHandler<Game> Updated;
 
         /// <summary>
-        /// Move the player to the new direction
+        ///     Move the player to the new direction
         /// </summary>
         /// <param name="direction"></param>
         public void Move(Direction direction)
@@ -46,23 +46,17 @@ namespace CODE_GameLib
                 Player.Move(room, nextX, nextY);
 
                 //When all the SankaraStones are picked up, the game ends.
-                if (!Rooms.Any(room1 => room1.Items.Any(item => item.Visible && item.GetItem() is SankaraStoneItem)))
-                {
-                    Quit = true;
-                }
+                if (!Rooms.Any(room1 => room1.Items.Any(item => item.Visible && item.GetItem() is SankaraStoneItem))) Quit = true;
 
                 //When the Lives are over the game ends
-                if (Player.Lives <= 0)
-                {
-                    Quit = true;
-                }
+                if (Player.Lives <= 0) Quit = true;
 
                 Updated?.Invoke(this, this);
             }
         }
 
         /// <summary>
-        /// Checks if player can move to the next location, so yes it returns the next y and x
+        ///     Checks if player can move to the next location, so yes it returns the next y and x
         /// </summary>
         /// <param name="player"></param>
         /// <param name="direction"></param>
@@ -78,10 +72,7 @@ namespace CODE_GameLib
 
             if (HasConnection(room, nextX, nextY, out var doorDirection, out var connection) && direction == doorDirection)
             {
-                if (!(connection.Door?.IsOpen(player) ?? true))
-                {
-                    return false;
-                }
+                if (!(connection.Door?.IsOpen(player) ?? true)) return false;
 
                 room = connection.TargetRoom;
 
@@ -132,23 +123,17 @@ namespace CODE_GameLib
             }
 
             //Player cannot run into the border
-            if (IsBorderTile(player.Room, nextX, nextY))
-            {
-                return false;
-            }
+            if (IsBorderTile(player.Room, nextX, nextY)) return false;
 
             if (HasConnection(room, nextX, nextY, out doorDirection, out connection))
-            {
                 if (connection.Door != null && !connection.Door.IsOpen(player))
-                {
                     return false;
-                }
-            }
 
             return true;
         }
+
         /// <summary>
-        /// Checks if your new position is a bordertile
+        ///     Checks if your new position is a bordertile
         /// </summary>
         /// <param name="room"></param>
         /// <param name="x"></param>
@@ -156,36 +141,39 @@ namespace CODE_GameLib
         /// <returns></returns>
         public bool IsBorderTile(RoomBase room, int x, int y)
         {
-            if (HasConnection(room, x, y))
-            {
-                return false;
-            }
+            if (HasConnection(room, x, y)) return false;
 
             return x == room.Width - 1 || x == 0 || y == room.Height - 1 || y == 0;
         }
 
 
         /// <summary>
-        /// checks if there is a connection
+        ///     checks if there is a connection
         /// </summary>
         /// <param name="room"></param>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public bool HasConnection(RoomBase room, int x, int y) => HasConnection(room, x, y, out _, out _);
+        public bool HasConnection(RoomBase room, int x, int y)
+        {
+            return HasConnection(room, x, y, out _, out _);
+        }
 
         /// <summary>
-        ///  Returns connection
+        ///     Returns connection
         /// </summary>
         /// <param name="room"></param>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="direction"></param>
         /// <returns></returns>
-        public bool HasConnection(RoomBase room, int x, int y, out Direction direction) => HasConnection(room, x, y, out direction, out _);
+        public bool HasConnection(RoomBase room, int x, int y, out Direction direction)
+        {
+            return HasConnection(room, x, y, out direction, out _);
+        }
 
         /// <summary>
-        /// checks if there is a connection and returns direction and connection it if so
+        ///     checks if there is a connection and returns direction and connection it if so
         /// </summary>
         /// <param name="room"></param>
         /// <param name="x"></param>

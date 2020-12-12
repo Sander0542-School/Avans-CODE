@@ -8,7 +8,7 @@ namespace CODE_FileSystem.Factories
     public class DoorFactory : IDoorFactory
     {
         /// <summary>
-        /// Generates an Door according to the type
+        ///     Generates an Door according to the type
         /// </summary>
         /// <param name="type"></param>
         /// <param name="options"></param>

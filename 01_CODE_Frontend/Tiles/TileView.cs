@@ -1,5 +1,4 @@
 ﻿using System;
-using CODE_GameLib;
 
 namespace CODE_Frontend.Tiles
 {
@@ -7,12 +6,12 @@ namespace CODE_Frontend.Tiles
     {
         protected readonly T Tile;
 
-        public ConsoleColor BackgroundColor { get; set; }
-
         protected TileView(T tile)
         {
             Tile = tile;
         }
+
+        public ConsoleColor BackgroundColor { get; set; }
 
         public virtual string GetIcon()
         {

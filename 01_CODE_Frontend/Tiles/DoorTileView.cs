@@ -7,6 +7,7 @@ namespace CODE_Frontend.Tiles
     public class DoorTileView : TileView<IDoor>
     {
         private readonly Direction _direction;
+
         public DoorTileView(IDoor tile, Direction direction) : base(tile)
         {
             _direction = direction;
@@ -25,10 +26,7 @@ namespace CODE_Frontend.Tiles
 
         public override ConsoleColor GetColor()
         {
-            if (Tile is ColoredDoor coloredDoor)
-            {
-                return Enum.Parse<ConsoleColor>(coloredDoor.Color, true);
-            }
+            if (Tile is ColoredDoor coloredDoor) return Enum.Parse<ConsoleColor>(coloredDoor.Color, true);
 
             return base.GetColor();
         }

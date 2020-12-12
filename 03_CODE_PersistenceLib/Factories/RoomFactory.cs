@@ -7,7 +7,7 @@ namespace CODE_FileSystem.Factories
     public class RoomFactory : IRoomFactory
     {
         /// <summary>
-        /// Creates a Room object according to the type
+        ///     Creates a Room object according to the type
         /// </summary>
         /// <param name="type"></param>
         /// <param name="id"></param>
@@ -21,7 +21,7 @@ namespace CODE_FileSystem.Factories
                 case "room":
                     return new Room(id, height, width);
                 default:
-                    throw new NotImplementedException(message: "This room is not implemented yet");
+                    throw new NotImplementedException("This room is not implemented yet");
             }
         }
     }
