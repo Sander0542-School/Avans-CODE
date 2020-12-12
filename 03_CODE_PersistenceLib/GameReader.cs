@@ -25,6 +25,11 @@ namespace CODE_FileSystem
             _doorFactory = doorFactory;
         }
 
+        /// <summary>
+        /// Pares the json file to a Game object
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
         public Game Read(string filePath)
         {
             var json = JObject.Parse(File.ReadAllText(filePath));
@@ -38,6 +43,11 @@ namespace CODE_FileSystem
             return new Game(filePath, rooms, player);
         }
 
+        /// <summary>
+        /// Parses a Room object to a list of rooms from json
+        /// </summary>
+        /// <param name="rooms"></param>
+        /// <returns></returns>
         private List<RoomBase> GetRooms(JToken rooms)
         {
             try
@@ -55,6 +65,11 @@ namespace CODE_FileSystem
             }
         }
 
+        /// <summary>
+        /// Parses a Room object from json
+        /// </summary>
+        /// <param name="jsonRoom"></param>
+        /// <returns></returns>
         private RoomBase GetRoom(JToken jsonRoom)
         {
             try
@@ -81,6 +96,11 @@ namespace CODE_FileSystem
             }
         }
 
+        /// <summary>
+        /// Parses the Room items from Json
+        /// </summary>
+        /// <param name="jsonItems"></param>
+        /// <returns></returns>
         private List<IItem> GetRoomItems(JToken jsonItems)
         {
             var items = new List<IItem>();
@@ -102,6 +122,12 @@ namespace CODE_FileSystem
             return items;
         }
 
+        /// <summary>
+        /// Parses the player and startroom object from Json
+        /// </summary>
+        /// <param name="jsonPlayer"></param>
+        /// <param name="rooms"></param>
+        /// <returns></returns>
         private Player GetPlayer(JToken jsonPlayer, IEnumerable<RoomBase> rooms)
         {
             try
@@ -120,8 +146,12 @@ namespace CODE_FileSystem
                 throw new ArgumentException($"The json file does not contain a valid player");
             }
         }
-
-        //Gets the connections from the json and adds them to the rooms
+       
+        /// <summary>
+        /// Adds the connections from the json and adds them to the rooms
+        /// </summary>
+        /// <param name="jsonConnections"></param>
+        /// <param name="rooms"></param>
         private void ApplyConnection(JToken jsonConnections, IEnumerable<RoomBase> rooms)
         {
             try
@@ -158,7 +188,11 @@ namespace CODE_FileSystem
             }
         }
 
-        //Gets the door belonging to the connection
+        /// <summary>
+        /// Gets the door belonging to the connection
+        /// </summary>
+        /// <param name="jsonConnection"></param>
+        /// <returns></returns>
         private IDoor GetConnectionDoor(JToken jsonConnection)
         {
             //Connection does not always have a door
@@ -177,7 +211,11 @@ namespace CODE_FileSystem
             return _doorFactory.CreateDoor(type, options);
         }
 
-        //Retrieves the derection of the connection
+        /// <summary>
+        /// Retrieves the derection of the connection
+        /// </summary>
+        /// <param name="jsonConnection"></param>
+        /// <returns></returns>
         private IDictionary<Direction, int> GetConnectionDirections(JToken jsonConnection)
         {
             var directions = new Dictionary<Direction, int>();

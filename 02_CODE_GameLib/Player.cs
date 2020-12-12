@@ -25,6 +25,12 @@ namespace CODE_GameLib
             Items = new ObservableCollection<IItem>();
         }
 
+        /// <summary>
+        /// Updates the user position for moving
+        /// </summary>
+        /// <param name="room"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public void Move(RoomBase room, int x, int y)
         {
             Room = room;
@@ -34,6 +40,10 @@ namespace CODE_GameLib
             room.Items.FirstOrDefault(item => item.Visible && item.X == x && item.Y == y)?.OnUse(this);
         }
 
+        /// <summary>
+        /// Reduce Players lives
+        /// </summary>
+        /// <param name="damage"></param>
         public void Damage(int damage)
         {
             Lives -= damage;

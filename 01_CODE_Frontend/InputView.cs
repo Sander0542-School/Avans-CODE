@@ -15,6 +15,9 @@ namespace CODE_Frontend
             _game.Updated += (sender, game1) => Quit = game1.Quit;
         }
 
+        /// <summary>
+        /// Reads the input from the keyboard
+        /// </summary>
         public void AskForInput()
         {
             //If the game is in progress, check which keys the user is using to move the player

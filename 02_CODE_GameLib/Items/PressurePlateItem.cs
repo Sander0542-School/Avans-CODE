@@ -18,7 +18,7 @@ namespace CODE_GameLib.Items
             X = x;
             Y = y;
         }
-
+        
         public void OnUse(Player player)
         {
             foreach (var connection in player.Room.Connections.Values.Where(connection => connection.Door is ToggleDoor))

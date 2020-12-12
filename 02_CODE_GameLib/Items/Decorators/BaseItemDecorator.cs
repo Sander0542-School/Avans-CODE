@@ -27,8 +27,16 @@ namespace CODE_GameLib.Items.Decorators
             _decoratee = decoratee;
         }
 
+        /// <summary>
+        /// Trigger when the player use the item
+        /// </summary>
+        /// <param name="player"></param>
         public virtual void OnUse(Player player) => _decoratee.OnUse(player);
 
+        /// <summary>
+        /// Returns the item
+        /// </summary>
+        /// <returns></returns>
         public IItem GetItem()
         {
             return _decoratee.GetItem();

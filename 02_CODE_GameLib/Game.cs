@@ -35,6 +35,10 @@ namespace CODE_GameLib
             Player = player;
         }
 
+        /// <summary>
+        /// Move the player to the new direction
+        /// </summary>
+        /// <param name="direction"></param>
         public void Move(Direction direction)
         {
             if (CanPlayerMove(Player, direction, out var room, out var nextX, out var nextY))
@@ -57,6 +61,15 @@ namespace CODE_GameLib
             }
         }
 
+        /// <summary>
+        /// Checks if player can move to the next location, so yes it returns the next y and x
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="direction"></param>
+        /// <param name="room"></param>
+        /// <param name="nextX"></param>
+        /// <param name="nextY"></param>
+        /// <returns></returns>
         private bool CanPlayerMove(Player player, Direction direction, out RoomBase room, out int nextX, out int nextY)
         {
             nextX = player.X;
@@ -134,7 +147,13 @@ namespace CODE_GameLib
 
             return true;
         }
-
+        /// <summary>
+        /// Checks if your new position is a bordertile
+        /// </summary>
+        /// <param name="room"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public bool IsBorderTile(RoomBase room, int x, int y)
         {
             if (HasConnection(room, x, y))
@@ -145,11 +164,35 @@ namespace CODE_GameLib
             return x == room.Width - 1 || x == 0 || y == room.Height - 1 || y == 0;
         }
 
-        //Looks if there is a connection and returns direction and connection it if so
+
+        /// <summary>
+        /// checks if there is a connection
+        /// </summary>
+        /// <param name="room"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public bool HasConnection(RoomBase room, int x, int y) => HasConnection(room, x, y, out _, out _);
 
+        /// <summary>
+        ///  Returns connection
+        /// </summary>
+        /// <param name="room"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public bool HasConnection(RoomBase room, int x, int y, out Direction direction) => HasConnection(room, x, y, out direction, out _);
 
+        /// <summary>
+        /// checks if there is a connection and returns direction and connection it if so
+        /// </summary>
+        /// <param name="room"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="direction"></param>
+        /// <param name="connection"></param>
+        /// <returns></returns>
         public bool HasConnection(RoomBase room, int x, int y, out Direction direction, out Connection connection)
         {
             direction = Direction.NORTH;
