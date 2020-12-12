@@ -25,11 +25,6 @@ namespace CODE_GameLib
             Items = new ObservableCollection<IItem>();
         }
 
-        public void Move(int x, int y)
-        {
-            Move(Room, x, y);
-        }
-
         public void Move(RoomBase room, int x, int y)
         {
             Room = room;
