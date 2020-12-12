@@ -33,6 +33,7 @@ namespace CODE_Frontend
             Console.WriteLine("+-------------------------------------------------");
             Console.WriteLine("|");
 
+            var player = game.Player;
             var room = game.Player.Room;
 
             //Generates the room by height and width
@@ -42,8 +43,8 @@ namespace CODE_Frontend
                 for (var x = 0; x < room.Width; x++)
                 {
                     ITileView tileView = new EmptyTileView();
-                    
-                    if (game.Player.X == x && game.Player.Y == y)
+
+                    if (player.X == x && player.Y == y)
                     {
                         tileView = new PlayerTileView();
                     }
@@ -55,13 +56,13 @@ namespace CODE_Frontend
                     {
                         tileView = new BorderTileView();
                     }
-                    else if (room.Items.Any(item => item.Visible && item.X == x && item.Y == y))
+                    else if (room.Items.Any(item => item.Visible && item.HasCoordinates(x, y)))
                     {
                         var item = room.Items.First(item1 => item1.X == x && item1.Y == y);
 
                         tileView = new ItemTileView(item, Direction.NORTH);
                     }
-                    
+
                     tileView.BackgroundColor = GetBackgroundColor(x, y);
                     tileView.Draw();
                 }
@@ -71,9 +72,9 @@ namespace CODE_Frontend
 
             Console.WriteLine("|");
             Console.WriteLine("+-------------------------------------------------");
-            Console.WriteLine($"| Lives:  {game.Player.Lives}");
-            Console.WriteLine($"| Stones: {game.Player.Items.Count(item => item is SankaraStoneItem)}");
-            Console.WriteLine($"| Keys:   {string.Join(", ", game.Player.Items.Where(item => item.GetItem() is KeyItem).Select(item => ((KeyItem) item.GetItem()).Color))}");
+            Console.WriteLine($"| Lives:  {player.Lives}");
+            Console.WriteLine($"| Stones: {player.Items.Count(item => item.GetItem() is SankaraStoneItem)}");
+            Console.WriteLine($"| Keys:   {string.Join(", ", player.Items.Where(item => item.GetItem() is KeyItem).Select(item => ((KeyItem) item.GetItem()).Color))}");
             Console.WriteLine("+-------------------------------------------------");
             Console.WriteLine("| A game for the course Code Development (20/21) by Tommy den Reijer and Sander Jochems.");
             Console.WriteLine("+-------------------------------------------------");
