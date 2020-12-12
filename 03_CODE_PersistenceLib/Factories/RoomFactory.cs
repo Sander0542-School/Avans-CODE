@@ -6,7 +6,14 @@ namespace CODE_FileSystem.Factories
 {
     public class RoomFactory : IRoomFactory
     {
-        //Creates a Room object according to the type
+        /// <summary>
+        /// Creates a Room object according to the type
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
+        /// <param name="height"></param>
+        /// <param name="width"></param>
+        /// <returns></returns>
         public RoomBase CreateRoom(string type, int id, int height, int width)
         {
             switch (type)

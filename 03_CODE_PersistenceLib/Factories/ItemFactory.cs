@@ -6,9 +6,17 @@ using CODE_GameLib.Items.Decorators;
 
 namespace CODE_FileSystem.Factories
 {
+
     public class ItemFactory : IItemFactory
     {
-        //Generates an Item according to the type
+        /// <summary>
+        /// Generates an Item according to the type
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public IItem CreateItem(string type, int x, int y, IDictionary<string, string> options)
         {
             IItem roomItem;
@@ -42,6 +50,12 @@ namespace CODE_FileSystem.Factories
             return ApplyDecorators(roomItem, options);
         }
 
+        /// <summary>
+        /// Adds decorators to item when required
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
         public IItem ApplyDecorators(IItem item, IDictionary<string, string> options)
         {
             foreach (var option in options)
