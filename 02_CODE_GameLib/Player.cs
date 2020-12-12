@@ -13,7 +13,7 @@ namespace CODE_GameLib
         public int X { get; private set; }
         public int Y { get; private set; }
 
-        public ObservableCollection<IItem> Items { get; set; }
+        public ObservableCollection<IItem> Items { get; }
 
         public Player(int lives, RoomBase room, int x, int y)
         {
