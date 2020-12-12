@@ -6,10 +6,10 @@ namespace CODE_GameLib.Rooms
 {
     public abstract class RoomBase
     {
-        public int Id { get; set; }
+        public int Id { get; }
 
-        public int Width { get; set; }
-        public int Height { get; set; }
+        public int Width { get; }
+        public int Height { get; }
 
         public RoomBase(int id, int height, int width)
         {
