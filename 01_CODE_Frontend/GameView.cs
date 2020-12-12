@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using CODE_Frontend.Tiles;
 using CODE_GameLib.Items;
 using CODE_GameLib.Rooms;
 
@@ -40,38 +41,29 @@ namespace CODE_Frontend
                 Console.Write("|   ");
                 for (var x = 0; x < room.Width; x++)
                 {
-                    Console.BackgroundColor = GetBackgroundColor(x, y);
-                    Console.Write(" ");
+                    ITileView tileView = new EmptyTileView();
+                    
                     if (game.Player.X == x && game.Player.Y == y)
                     {
-                        Console.ForegroundColor = ConsoleColor.DarkBlue;
-                        Console.Write("P");
+                        tileView = new PlayerTileView();
                     }
-                    else if (game.HasConnection(room, x, y, out var direction))
+                    else if (game.HasConnection(room, x, y, out var direction, out var connection))
                     {
-                        var connection = room.Connections[direction];
-
-                        Console.Write(connection.Door != null ? "D" : " ");
+                        tileView = new DoorTileView(connection.Door, direction);
                     }
                     else if (game.IsBorderTile(room, x, y))
                     {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.Write("#");
+                        tileView = new BorderTileView();
                     }
                     else if (room.Items.Any(item => item.Visible && item.X == x && item.Y == y))
                     {
                         var item = room.Items.First(item1 => item1.X == x && item1.Y == y);
 
-                        // Console.ForegroundColor = FromColor(item.GetColor());
-                        Console.Write("I");
+                        tileView = new ItemTileView(item, Direction.NORTH);
                     }
-                    else
-                    {
-                        Console.Write(" ");
-                    }
-
-                    Console.Write(" ");
-                    Console.ResetColor();
+                    
+                    tileView.BackgroundColor = GetBackgroundColor(x, y);
+                    tileView.Draw();
                 }
 
                 Console.WriteLine();

@@ -5,16 +5,16 @@ namespace CODE_GameLib.Doors
 {
     public class ColoredDoor : IDoor
     {
-        private string _color;
+        public string Color { get; }
 
         public ColoredDoor(string color)
         {
-            _color = color;
+            Color = color;
         }
 
         public bool IsOpen(Player player)
         {
-            return player.Items.Any(item => item.GetItem() is KeyItem keyItem && keyItem.Color == _color);
+            return player.Items.Any(item => item.GetItem() is KeyItem keyItem && keyItem.Color == Color);
         }
 
         public void AfterUse(Player player)
