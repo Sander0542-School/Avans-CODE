@@ -10,7 +10,7 @@
         {
             base.OnUse(player);
             
-            player.Items.Add(GetItem());
+            player.AddItem(GetItem());
         }
     }
 }
