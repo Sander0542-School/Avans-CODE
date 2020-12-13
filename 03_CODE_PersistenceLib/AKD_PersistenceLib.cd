@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="CODE_FileSystem.Factories.DoorFactory" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="7.75" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\DoorFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_FileSystem.Factories.ItemFactory" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="6" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\ItemFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_FileSystem.Factories.RoomFactory" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="4.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Factories\RoomFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_FileSystem.GameReader">
+    <Position X="0.5" Y="0.5" Width="6.25" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAABBAAAAAAIAIGAAACgAIAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>GameReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CODE_FileSystem.Factories.Interfaces.IDoorFactory">
+    <Position X="6.25" Y="7.75" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\Interfaces\IDoorFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_FileSystem.Factories.Interfaces.IItemFactory">
+    <Position X="6.25" Y="6" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\Interfaces\IItemFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_FileSystem.Factories.Interfaces.IRoomFactory">
+    <Position X="6.25" Y="4.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Factories\Interfaces\IRoomFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
