@@ -5,6 +5,7 @@ using System.Linq;
 using CODE_GameLib;
 using CODE_GameLib.Connections;
 using CODE_GameLib.Doors;
+using CODE_GameLib.Floors;
 using CODE_GameLib.Items;
 using CODE_GameLib.Rooms;
 using CODE_PersistenceLib.Factories.Interfaces;
@@ -20,13 +21,15 @@ namespace CODE_PersistenceLib
         private readonly IRoomFactory _roomFactory;
         private readonly IItemFactory _roomItemFactory;
         private readonly IEnemyFactory _enemyFactory;
+        private readonly IFloorFactory _floorFactory;
 
-        public GameReader(IRoomFactory roomFactory, IItemFactory roomItemFactory, IDoorFactory doorFactory, IEnemyFactory enemyFactory)
+        public GameReader(IRoomFactory roomFactory, IItemFactory roomItemFactory, IDoorFactory doorFactory, IEnemyFactory enemyFactory, IFloorFactory floorFactory)
         {
             _roomFactory = roomFactory;
             _roomItemFactory = roomItemFactory;
             _doorFactory = doorFactory;
             _enemyFactory = enemyFactory;
+            _floorFactory = floorFactory;
         }
 
         /// <summary>
@@ -84,6 +87,7 @@ namespace CODE_PersistenceLib
 
                 room.Items = jsonRoom["items"] != null ? GetRoomItems(jsonRoom["items"]) : new List<IItem>();
                 room.Enemies = jsonRoom["enemies"] != null ? GetRoomEnemies(jsonRoom["enemies"]) : new List<Enemy>();
+                room.Floors = jsonRoom["specialFloorTiles"] != null ? GetRoomFloors(jsonRoom["specialFloorTiles"]) : new List<IFloor>();
 
                 return room;
             }
@@ -148,6 +152,33 @@ namespace CODE_PersistenceLib
         }
 
         /// <summary>
+        ///     Parses the Special Floor Tiles from Json
+        /// </summary>
+        /// <param name="jsonFloors"></param>
+        /// <returns></returns>
+        private List<IFloor> GetRoomFloors(JToken jsonFloors)
+        {
+            var floors = new List<IFloor>();
+
+            foreach (var jsonFloor in jsonFloors)
+            {
+                var type = jsonFloor["type"].Value<string>();
+
+                var x = jsonFloor["x"].Value<int>();
+                var y = jsonFloor["y"].Value<int>();
+
+                var options = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonFloor.ToString());
+                options.Remove("type");
+                options.Remove("x");
+                options.Remove("y");
+
+                floors.Add(_floorFactory.CreateFloor(type, x, y, options));
+            }
+
+            return floors;
+        }
+
+        /// <summary>
         ///     Parses the player and startroom object from Json
         /// </summary>
         /// <param name="jsonPlayer"></param>
@@ -185,7 +216,7 @@ namespace CODE_PersistenceLib
                 foreach (var jsonConnection in jsonConnections)
                 {
                     var door = GetConnectionDoor(jsonConnection);
-                    
+
                     if (jsonConnection["portal"] != null)
                     {
                         var roomOne = rooms.First(room => room.Id == jsonConnection["portal"][0]["roomId"].Value<int>());
@@ -195,7 +226,7 @@ namespace CODE_PersistenceLib
                         var roomOneY = jsonConnection["portal"][0]["y"].Value<int>();
                         var roomTwoX = jsonConnection["portal"][1]["x"].Value<int>();
                         var roomTwoY = jsonConnection["portal"][1]["y"].Value<int>();
-                        
+
                         roomOne.Portals.Add(new Tuple<int, int>(roomOneX, roomOneY), new Portal
                         {
                             TargetRoom = roomTwo,
@@ -203,7 +234,7 @@ namespace CODE_PersistenceLib
                             TargetX = roomTwoX,
                             TargetY = roomTwoY
                         });
-                        
+
                         roomTwo.Portals.Add(new Tuple<int, int>(roomTwoX, roomTwoY), new Portal
                         {
                             TargetRoom = roomOne,
@@ -218,7 +249,7 @@ namespace CODE_PersistenceLib
 
                         var roomOne = rooms.First(room => room.Id == directions.First().Value);
                         var roomTwo = rooms.First(room => room.Id == directions.Last().Value);
-                        
+
                         //Each connection connects 2 rooms
                         roomOne.Connections.Add(directions.Last().Key, new Connection
                         {

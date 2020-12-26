@@ -21,6 +21,7 @@ namespace CODE_Frontend
                 .AddSingleton<IItemFactory, ItemFactory>()
                 .AddSingleton<IDoorFactory, DoorFactory>()
                 .AddSingleton<IEnemyFactory, EnemyFactory>()
+                .AddSingleton<IFloorFactory, FloorFactory>()
                 .AddTransient<GameReader>()
                 .BuildServiceProvider();
 

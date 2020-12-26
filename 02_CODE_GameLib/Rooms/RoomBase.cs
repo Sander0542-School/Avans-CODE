@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CODE_GameLib.Connections;
+using CODE_GameLib.Floors;
 using CODE_GameLib.Items;
 using CODE_TempleOfDoom_DownloadableContent;
 
@@ -30,6 +31,7 @@ namespace CODE_GameLib.Rooms
         public Dictionary<Tuple<int, int>, Portal> Portals { get; }
         public List<IItem> Items { get; set; }
         public List<Enemy> Enemies { get; set; }
+        public List<IFloor> Floors { get; set; }
 
         /// <summary>
         ///     Shoot all the enemies in each direction from the given x and y value
@@ -135,16 +137,43 @@ namespace CODE_GameLib.Rooms
             return false;
         }
 
+        /// <summary>
+        ///     Checks if there is an portal on the given x and y value
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public bool HasPortal(int x, int y)
         {
             return HasPortal(x, y, out _);
         }
 
+        /// <summary>
+        ///     Checks if there is an portal on the given x and y value and returns the portal
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="portal"></param>
+        /// <returns></returns>
         public bool HasPortal(int x, int y, out Portal portal)
         {
             portal = Portals.FirstOrDefault(pair => pair.Key.Item1 == x && pair.Key.Item2 == y).Value;
 
             return portal != null;
+        }
+
+        /// <summary>
+        ///     Checks if there is an special floor tile on the given x and y value and return the floor tile
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="floor"></param>
+        /// <returns></returns>
+        public bool IsFloorTile(int x, int y, out IFloor floor)
+        {
+            floor = Floors.FirstOrDefault(floor1 => floor1.X == x && floor1.Y == y);
+
+            return floor != null;
         }
     }
 }

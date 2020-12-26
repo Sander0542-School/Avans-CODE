@@ -20,18 +20,21 @@ namespace CODE_Frontend
         /// <param name="game"></param>
         public void Draw(Game game)
         {
+            var player = game.Player;
+            var room = game.Player.Room;
+            
             Console.Clear();
 
             Console.WriteLine("+-------------------------------------------------");
 
             Console.WriteLine("| Welcome to the Temple of Doom!");
             Console.WriteLine($"| Current level: {game.Level}");
+#if DEBUG
+            Console.WriteLine($"| Room: {player.Room.Id} - Coords ({player.X}, {player.Y})");
+#endif
 
             Console.WriteLine("+-------------------------------------------------");
             Console.WriteLine("|");
-
-            var player = game.Player;
-            var room = game.Player.Room;
 
             //Generates the room by height and width
             for (var y = 0; y < room.Height; y++)
@@ -63,9 +66,15 @@ namespace CODE_Frontend
                     }
                     else if (room.Items.Any(item => item.Visible && item.X == x && item.Y == y))
                     {
-                        var item = room.Items.First(item1 => item1.X == x && item1.Y == y);
+                        var item = room.Items.First(item1 => item1.Visible && item1.X == x && item1.Y == y);
 
                         tileView = new ItemTileView(item);
+                    }
+                    else if (room.Floors.Any(floor => floor.X == x && floor.Y == y))
+                    {
+                        var floor = room.Floors.First(floor1 => floor1.X == x && floor1.Y == y);
+
+                        tileView = new FloorTileView(floor);
                     }
 
                     tileView.Draw();
@@ -79,12 +88,6 @@ namespace CODE_Frontend
             Console.WriteLine($"| Lives:  {player.Lives}");
             Console.WriteLine($"| Stones: {player.Items.Count(item => item.GetItem() is SankaraStoneItem)}");
             Console.WriteLine($"| Keys:   {string.Join(", ", player.Items.Where(item => item.GetItem() is KeyItem).Select(item => ((KeyItem) item.GetItem()).Color))}");
-#if DEBUG
-            Console.WriteLine("+-------------------------------------------------");
-            Console.WriteLine($"| Room: {player.Room.Id}");
-            Console.WriteLine($"| X:    {player.X}");
-            Console.WriteLine($"| Y:    {player.Y}");
-#endif
             Console.WriteLine("+-------------------------------------------------");
             Console.WriteLine("| A game for the course Code Development (20/21) by Sander Jochems.");
             Console.WriteLine("+-------------------------------------------------");

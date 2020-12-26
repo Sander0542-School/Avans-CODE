@@ -71,6 +71,27 @@ namespace CODE_GameLib
                     throw new NotImplementedException("This direction has not been implemented yet");
             }
 
+            var beforeFloorX = nextX;
+            var beforeFloorY = nextY;
+
+            if (room.IsFloorTile(nextX, nextY, out var floor))
+            {
+                floor.OnEnter(this, out nextX, out nextY);
+
+                bool floorSuccess = true;
+
+                if (room.IsBorderTile(nextX, nextY)) floorSuccess = false;
+
+                if (room.HasConnection(nextX, nextY, out doorDirection, out connection))
+                    if (connection.Door != null && !connection.Door.IsOpen(this))
+                        return floorSuccess = false;
+
+                if (floorSuccess) return true;
+            }
+
+            nextX = beforeFloorX;
+            nextY = beforeFloorY;
+
             //Player cannot run into the border
             if (room.IsBorderTile(nextX, nextY)) return false;
 
@@ -87,6 +108,16 @@ namespace CODE_GameLib
         /// <summary>
         ///     Updates the user position for moving
         /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public void Move(int x, int y)
+        {
+            Move(Room, x, y);
+        }
+
+        /// <summary>
+        ///     Updates the user position for moving
+        /// </summary>
         /// <param name="room"></param>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -97,13 +128,6 @@ namespace CODE_GameLib
             Y = y;
 
             room.Items.FirstOrDefault(item => item.Visible && item.X == x && item.Y == y)?.OnUse(this);
-
-            room.MoveEnemies();
-
-            if (Room.Enemies.Any(enemy => enemy.CurrentXLocation == X && enemy.CurrentYLocation == Y))
-            {
-                Damage(1);
-            }
         }
 
         /// <summary>
