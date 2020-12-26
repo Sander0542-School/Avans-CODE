@@ -46,30 +46,7 @@ namespace CODE_GameLib
             {
                 if (!(connection.Door?.IsOpen(this) ?? true)) return false;
 
-                room = connection.TargetRoom;
-
-                //Ensures that the player arrives at the correct coordinates in the new room
-                switch (connection.TargetDirection)
-                {
-                    case Direction.NORTH:
-                        nextY = 0;
-                        nextX = room.Width / 2;
-                        break;
-                    case Direction.EAST:
-                        nextY = room.Height / 2;
-                        nextX = room.Width - 1;
-                        break;
-                    case Direction.SOUTH:
-                        nextY = room.Height - 1;
-                        nextX = room.Width / 2;
-                        break;
-                    case Direction.WEST:
-                        nextY = room.Height / 2;
-                        nextX = 0;
-                        break;
-                    default:
-                        throw new NotImplementedException("This entrance direction is not yet supported");
-                }
+                connection.GetExitLocation(out room, out nextX, out nextY);
 
                 connection.Door?.AfterUse(this);
 
@@ -101,6 +78,9 @@ namespace CODE_GameLib
                 if (connection.Door != null && !connection.Door.IsOpen(this))
                     return false;
 
+            if (room.HasPortal(nextX, nextY, out var portal))
+                portal.GetExitLocation(out room, out nextX, out nextY);
+
             return true;
         }
 
@@ -117,7 +97,7 @@ namespace CODE_GameLib
             Y = y;
 
             room.Items.FirstOrDefault(item => item.Visible && item.X == x && item.Y == y)?.OnUse(this);
-            
+
             room.MoveEnemies();
 
             if (Room.Enemies.Any(enemy => enemy.CurrentXLocation == X && enemy.CurrentYLocation == Y))

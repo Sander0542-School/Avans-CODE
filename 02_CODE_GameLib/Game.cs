@@ -57,7 +57,10 @@ namespace CODE_GameLib
 
         public void Shoot()
         {
-            Player.Room.ShootEnemies(Player.X, Player.Y);
+            if (Player.Room.ShootEnemies(Player.X, Player.Y) > 0)
+            {
+                Updated?.Invoke(this, this);
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using CODE_GameLib.Connections;
 using CODE_GameLib.Items;
 using CODE_TempleOfDoom_DownloadableContent;
 
@@ -14,6 +16,7 @@ namespace CODE_GameLib.Rooms
             Height = height;
 
             Connections = new Dictionary<Direction, Connection>();
+            Portals = new Dictionary<Tuple<int, int>, Portal>();
             Items = new List<IItem>();
         }
 
@@ -22,7 +25,9 @@ namespace CODE_GameLib.Rooms
         public int Width { get; }
         public int Height { get; }
 
-        public Dictionary<Direction, Connection> Connections { get; set; }
+        public Dictionary<Direction, Connection> Connections { get; }
+
+        public Dictionary<Tuple<int, int>, Portal> Portals { get; }
         public List<IItem> Items { get; set; }
         public List<Enemy> Enemies { get; set; }
 
@@ -31,12 +36,14 @@ namespace CODE_GameLib.Rooms
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public void ShootEnemies(int x, int y)
+        public int ShootEnemies(int x, int y)
         {
             Enemies.FirstOrDefault(enemy => enemy.CurrentXLocation == x && enemy.CurrentYLocation == y - 1)?.GetHurt(1); // NORTH
             Enemies.FirstOrDefault(enemy => enemy.CurrentXLocation == x + 1 && enemy.CurrentYLocation == y)?.GetHurt(1); // EAST
             Enemies.FirstOrDefault(enemy => enemy.CurrentXLocation == x && enemy.CurrentYLocation == y + 1)?.GetHurt(1); // SOUTH
             Enemies.FirstOrDefault(enemy => enemy.CurrentXLocation == x - 1 && enemy.CurrentYLocation == y)?.GetHurt(1); // WEST
+
+            return Enemies.RemoveAll(enemy => enemy.NumberOfLives < 1);
         }
 
         /// <summary>
@@ -59,7 +66,7 @@ namespace CODE_GameLib.Rooms
 
             return x == Width - 1 || x == 0 || y == Height - 1 || y == 0;
         }
-        
+
         /// <summary>
         ///     checks if there is a connection
         /// </summary>
@@ -126,6 +133,18 @@ namespace CODE_GameLib.Rooms
             }
 
             return false;
+        }
+
+        public bool HasPortal(int x, int y)
+        {
+            return HasPortal(x, y, out _);
+        }
+
+        public bool HasPortal(int x, int y, out Portal portal)
+        {
+            portal = Portals.FirstOrDefault(pair => pair.Key.Item1 == x && pair.Key.Item2 == y).Value;
+
+            return portal != null;
         }
     }
 }

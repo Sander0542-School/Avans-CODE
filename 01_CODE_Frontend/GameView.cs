@@ -2,6 +2,7 @@
 using System.Linq;
 using CODE_Frontend.Tiles;
 using CODE_GameLib;
+using CODE_GameLib.Connections;
 using CODE_GameLib.Items;
 
 namespace CODE_Frontend
@@ -47,6 +48,10 @@ namespace CODE_Frontend
                     else if (room.Enemies.Any(enemy => enemy.CurrentXLocation == x && enemy.CurrentYLocation == y))
                     {
                         tileView = new EnemyTileView();
+                    }
+                    else if (room.HasPortal(x, y, out var portal))
+                    {
+                        tileView = new PortalTileView(portal.Door);
                     }
                     else if (room.HasConnection(x, y, out var direction, out var connection))
                     {

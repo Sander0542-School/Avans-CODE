@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CODE_GameLib;
+using CODE_GameLib.Connections;
 using CODE_GameLib.Doors;
 using CODE_GameLib.Items;
 using CODE_GameLib.Rooms;
@@ -119,7 +120,7 @@ namespace CODE_PersistenceLib
 
             return items;
         }
-        
+
         /// <summary>
         ///     Parses the Room enemies from Json
         /// </summary>
@@ -132,7 +133,7 @@ namespace CODE_PersistenceLib
             foreach (var jsonEnemy in jsonEnemies)
             {
                 var type = jsonEnemy["type"].Value<string>();
-                
+
                 var x = jsonEnemy["x"].Value<int>();
                 var y = jsonEnemy["y"].Value<int>();
                 var minX = jsonEnemy["minX"].Value<int>();
@@ -183,27 +184,56 @@ namespace CODE_PersistenceLib
                 //Each connection is added to a room
                 foreach (var jsonConnection in jsonConnections)
                 {
-                    var directions = GetConnectionDirections(jsonConnection);
-
-                    var roomOne = rooms.First(room => room.Id == directions.First().Value);
-                    var roomTwo = rooms.First(room => room.Id == directions.Last().Value);
-
                     var door = GetConnectionDoor(jsonConnection);
-
-                    //Each connection connects 2 rooms
-                    roomOne.Connections.Add(directions.Last().Key, new Connection
+                    
+                    if (jsonConnection["portal"] != null)
                     {
-                        TargetRoom = rooms.First(room => room.Id == directions.Last().Value),
-                        TargetDirection = directions.First().Key,
-                        Door = door
-                    });
+                        var roomOne = rooms.First(room => room.Id == jsonConnection["portal"][0]["roomId"].Value<int>());
+                        var roomTwo = rooms.First(room => room.Id == jsonConnection["portal"][1]["roomId"].Value<int>());
 
-                    roomTwo.Connections.Add(directions.First().Key, new Connection
+                        var roomOneX = jsonConnection["portal"][0]["x"].Value<int>();
+                        var roomOneY = jsonConnection["portal"][0]["y"].Value<int>();
+                        var roomTwoX = jsonConnection["portal"][1]["x"].Value<int>();
+                        var roomTwoY = jsonConnection["portal"][1]["y"].Value<int>();
+                        
+                        roomOne.Portals.Add(new Tuple<int, int>(roomOneX, roomOneY), new Portal
+                        {
+                            TargetRoom = roomTwo,
+                            Door = door,
+                            TargetX = roomTwoX,
+                            TargetY = roomTwoY
+                        });
+                        
+                        roomTwo.Portals.Add(new Tuple<int, int>(roomTwoX, roomTwoY), new Portal
+                        {
+                            TargetRoom = roomOne,
+                            Door = door,
+                            TargetX = roomOneX,
+                            TargetY = roomOneY
+                        });
+                    }
+                    else
                     {
-                        TargetRoom = rooms.First(room => room.Id == directions.First().Value),
-                        TargetDirection = directions.Last().Key,
-                        Door = door
-                    });
+                        var directions = GetConnectionDirections(jsonConnection);
+
+                        var roomOne = rooms.First(room => room.Id == directions.First().Value);
+                        var roomTwo = rooms.First(room => room.Id == directions.Last().Value);
+                        
+                        //Each connection connects 2 rooms
+                        roomOne.Connections.Add(directions.Last().Key, new Connection
+                        {
+                            TargetRoom = rooms.First(room => room.Id == directions.Last().Value),
+                            TargetDirection = directions.First().Key,
+                            Door = door
+                        });
+
+                        roomTwo.Connections.Add(directions.First().Key, new Connection
+                        {
+                            TargetRoom = rooms.First(room => room.Id == directions.First().Value),
+                            TargetDirection = directions.Last().Key,
+                            Door = door
+                        });
+                    }
                 }
             }
             catch (Exception)
