@@ -63,7 +63,6 @@ namespace CODE_Frontend
                         tileView = new ItemTileView(item);
                     }
 
-                    tileView.BackgroundColor = ConsoleColor.Black;
                     tileView.Draw();
                 }
 

@@ -4,14 +4,24 @@ namespace CODE_Frontend.Tiles
 {
     public interface ITileView
     {
-        ConsoleColor BackgroundColor { get; set; }
+        string GetIcon()
+        {
+            return " ";
+        }
 
-        string GetIcon();
-        ConsoleColor GetColor();
+        ConsoleColor GetColor()
+        {
+            return ConsoleColor.White;
+        }
+
+        ConsoleColor GetBackgroundColor()
+        {
+            return ConsoleColor.Black;
+        }
 
         void Draw()
         {
-            Console.BackgroundColor = BackgroundColor;
+            Console.BackgroundColor = GetBackgroundColor();
             Console.ForegroundColor = GetColor();
             Console.Write($" {GetIcon()} ");
             Console.ResetColor();

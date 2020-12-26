@@ -4,8 +4,6 @@ namespace CODE_Frontend.Tiles
 {
     public class EnemyTileView : ITileView
     {
-        public ConsoleColor BackgroundColor { get; set; }
-
         public string GetIcon()
         {
             return "E";
@@ -13,7 +11,7 @@ namespace CODE_Frontend.Tiles
 
         public ConsoleColor GetColor()
         {
-            return ConsoleColor.DarkBlue;
+            return ConsoleColor.DarkRed;
         }
     }
 }

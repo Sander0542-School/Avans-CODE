@@ -8,7 +8,7 @@ namespace CODE_Frontend.Tiles
     {
         private readonly Direction _direction;
 
-        public DoorTileView(IDoor tile, Direction direction) : base(tile)
+        public DoorTileView(IDoor tile, Direction direction = Direction.NORTH) : base(tile)
         {
             _direction = direction;
         }

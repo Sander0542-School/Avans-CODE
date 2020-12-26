@@ -11,8 +11,6 @@ namespace CODE_Frontend.Tiles
             Tile = tile;
         }
 
-        public ConsoleColor BackgroundColor { get; set; }
-
         public virtual string GetIcon()
         {
             return " ";
@@ -21,6 +19,11 @@ namespace CODE_Frontend.Tiles
         public virtual ConsoleColor GetColor()
         {
             return ConsoleColor.White;
+        }
+
+        public virtual ConsoleColor GetBackgroundColor()
+        {
+            return ConsoleColor.Black;
         }
     }
 }
