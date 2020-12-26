@@ -10,7 +10,7 @@ namespace CODE_Frontend.Tiles
         {
         }
 
-        public override string GetIcon()
+        public override char GetIcon()
         {
             if (!Tile.Visible) return base.GetIcon();
 
@@ -20,20 +20,20 @@ namespace CODE_Frontend.Tiles
 
                 while (tile is BaseItemDecorator decoratedTile)
                 {
-                    if (decoratedTile is DisappearingItemDecorator) return "@";
+                    if (decoratedTile is DisappearingItemDecorator) return '@';
 
                     tile = decoratedTile.Decoratee;
                 }
 
-                return "O";
+                return 'O';
             }
 
             return Tile.GetItem() switch
             {
-                KeyItem _ => "K",
-                SankaraStoneItem _ => "S",
-                BoobietrapItem _ => "O",
-                PressurePlateItem _ => "T",
+                KeyItem _ => 'K',
+                SankaraStoneItem _ => 'S',
+                BoobietrapItem _ => 'O',
+                PressurePlateItem _ => 'T',
                 _ => base.GetIcon()
             };
         }

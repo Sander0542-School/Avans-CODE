@@ -4,9 +4,9 @@ namespace CODE_Frontend.Tiles
 {
     public interface ITileView
     {
-        string GetIcon()
+        char GetIcon()
         {
-            return " ";
+            return ' ';
         }
 
         ConsoleColor GetColor()

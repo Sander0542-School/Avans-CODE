@@ -13,13 +13,13 @@ namespace CODE_Frontend.Tiles
             _direction = direction;
         }
 
-        public override string GetIcon()
+        public override char GetIcon()
         {
             return Tile switch
             {
-                ClosingGateDoor _ => "∩",
-                ColoredDoor _ => _direction == Direction.NORTH || _direction == Direction.SOUTH ? "=" : "|",
-                ToggleDoor _ => "⊥",
+                ClosingGateDoor _ => '∩',
+                ColoredDoor _ => _direction == Direction.NORTH || _direction == Direction.SOUTH ? '=' : '|',
+                ToggleDoor _ => '⊥',
                 _ => base.GetIcon()
             };
         }

@@ -4,9 +4,9 @@ namespace CODE_Frontend.Tiles
 {
     public class BorderTileView : ITileView
     {
-        public string GetIcon()
+        public char GetIcon()
         {
-            return "#";
+            return '#';
         }
 
         public ConsoleColor GetColor()

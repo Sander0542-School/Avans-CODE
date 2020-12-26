@@ -4,9 +4,9 @@ namespace CODE_Frontend.Tiles
 {
     public class PlayerTileView : ITileView
     {
-        public string GetIcon()
+        public char GetIcon()
         {
-            return "P";
+            return 'P';
         }
 
         public ConsoleColor GetColor()

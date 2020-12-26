@@ -11,9 +11,9 @@ namespace CODE_Frontend.Tiles
             Tile = tile;
         }
 
-        public virtual string GetIcon()
+        public virtual char GetIcon()
         {
-            return " ";
+            return ' ';
         }
 
         public virtual ConsoleColor GetColor()

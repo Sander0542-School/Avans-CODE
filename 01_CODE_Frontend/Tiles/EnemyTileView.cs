@@ -4,9 +4,9 @@ namespace CODE_Frontend.Tiles
 {
     public class EnemyTileView : ITileView
     {
-        public string GetIcon()
+        public char GetIcon()
         {
-            return "E";
+            return 'E';
         }
 
         public ConsoleColor GetColor()
