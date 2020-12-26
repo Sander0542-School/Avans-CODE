@@ -19,12 +19,6 @@
             set => Decoratee.Visible = value;
         }
 
-        public int Damage
-        {
-            get => Decoratee.Damage;
-            set => Decoratee.Damage = value;
-        }
-
         /// <summary>
         ///     Trigger when the player use the item
         /// </summary>

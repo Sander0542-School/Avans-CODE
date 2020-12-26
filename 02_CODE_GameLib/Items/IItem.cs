@@ -5,8 +5,6 @@
         int X { get; }
         
         int Y { get; }
-        
-        int Damage { get; set; }
 
         bool Visible { get; set; }
 

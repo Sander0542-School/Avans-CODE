@@ -2,15 +2,17 @@
 {
     public class DamageItemDecorator : BaseItemDecorator
     {
+        private readonly int _damage;
+
         public DamageItemDecorator(IItem decoratee, int damage) : base(decoratee)
         {
-            Damage = damage;
+            _damage = damage;
         }
 
         public override void OnUse(Player player)
         {
             base.OnUse(player);
-            player.Damage(Damage);
+            player.Damage(_damage);
         }
     }
 }
