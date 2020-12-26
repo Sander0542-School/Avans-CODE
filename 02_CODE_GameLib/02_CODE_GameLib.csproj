@@ -9,4 +9,10 @@
     <None Remove="Items\NewFile1.txt" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="CODE_TempleOfDoom_DownloadableContent">
+      <HintPath>CODE_TempleOfDoom_DownloadableContent.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

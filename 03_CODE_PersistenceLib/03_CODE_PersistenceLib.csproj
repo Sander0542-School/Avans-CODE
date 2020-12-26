@@ -14,4 +14,10 @@
     <ProjectReference Include="..\02_CODE_GameLib\02_CODE_GameLib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="CODE_TempleOfDoom_DownloadableContent, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\02_CODE_GameLib\CODE_TempleOfDoom_DownloadableContent.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
