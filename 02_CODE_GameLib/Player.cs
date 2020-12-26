@@ -6,7 +6,7 @@ using CODE_GameLib.Rooms;
 
 namespace CODE_GameLib
 {
-    public class Player : ICoordinates
+    public class Player
     {
         public Player(int lives, RoomBase room, int x, int y)
         {

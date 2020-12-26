@@ -52,7 +52,7 @@ namespace CODE_Frontend
                     {
                         tileView = new BorderTileView();
                     }
-                    else if (room.Items.Any(item => item.Visible && item.HasCoordinates(x, y)))
+                    else if (room.Items.Any(item => item.Visible && item.X == x && item.Y == y))
                     {
                         var item = room.Items.First(item1 => item1.X == x && item1.Y == y);
 
