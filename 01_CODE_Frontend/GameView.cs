@@ -79,6 +79,12 @@ namespace CODE_Frontend
             Console.WriteLine($"| Lives:  {player.Lives}");
             Console.WriteLine($"| Stones: {player.Items.Count(item => item.GetItem() is SankaraStoneItem)}");
             Console.WriteLine($"| Keys:   {string.Join(", ", player.Items.Where(item => item.GetItem() is KeyItem).Select(item => ((KeyItem) item.GetItem()).Color))}");
+#if DEBUG
+            Console.WriteLine("+-------------------------------------------------");
+            Console.WriteLine($"| Room: {player.Room.Id}");
+            Console.WriteLine($"| X:    {player.X}");
+            Console.WriteLine($"| Y:    {player.Y}");
+#endif
             Console.WriteLine("+-------------------------------------------------");
             Console.WriteLine("| A game for the course Code Development (20/21) by Sander Jochems.");
             Console.WriteLine("+-------------------------------------------------");
