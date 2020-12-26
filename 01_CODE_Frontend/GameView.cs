@@ -44,11 +44,11 @@ namespace CODE_Frontend
                     {
                         tileView = new PlayerTileView();
                     }
-                    else if (game.HasConnection(room, x, y, out var direction, out var connection))
+                    else if (room.HasConnection(x, y, out var direction, out var connection))
                     {
                         tileView = new DoorTileView(connection.Door, direction);
                     }
-                    else if (game.IsBorderTile(room, x, y))
+                    else if (room.IsBorderTile(x, y))
                     {
                         tileView = new BorderTileView();
                     }
@@ -72,7 +72,7 @@ namespace CODE_Frontend
             Console.WriteLine($"| Stones: {player.Items.Count(item => item.GetItem() is SankaraStoneItem)}");
             Console.WriteLine($"| Keys:   {string.Join(", ", player.Items.Where(item => item.GetItem() is KeyItem).Select(item => ((KeyItem) item.GetItem()).Color))}");
             Console.WriteLine("+-------------------------------------------------");
-            Console.WriteLine("| A game for the course Code Development (20/21) by Tommy den Reijer and Sander Jochems.");
+            Console.WriteLine("| A game for the course Code Development (20/21) by Sander Jochems.");
             Console.WriteLine("+-------------------------------------------------");
         }
 
