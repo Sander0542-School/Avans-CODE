@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using CODE_FileSystem.Factories.Interfaces;
 using CODE_GameLib.Items;
 using CODE_GameLib.Items.Decorators;
+using CODE_PersistenceLib.Factories.Interfaces;
 
-namespace CODE_FileSystem.Factories
+namespace CODE_PersistenceLib.Factories
 {
     public class ItemFactory : IItemFactory
     {

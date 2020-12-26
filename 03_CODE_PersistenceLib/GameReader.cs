@@ -6,11 +6,12 @@ using CODE_GameLib;
 using CODE_GameLib.Doors;
 using CODE_GameLib.Items;
 using CODE_GameLib.Rooms;
+using CODE_PersistenceLib.Factories.Interfaces;
 using CODE_TempleOfDoom_DownloadableContent;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace CODE_FileSystem
+namespace CODE_PersistenceLib
 {
     public class GameReader
     {

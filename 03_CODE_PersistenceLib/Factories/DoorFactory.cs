@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using CODE_FileSystem.Factories.Interfaces;
 using CODE_GameLib.Doors;
+using CODE_PersistenceLib.Factories.Interfaces;
 
-namespace CODE_FileSystem.Factories
+namespace CODE_PersistenceLib.Factories
 {
     public class DoorFactory : IDoorFactory
     {

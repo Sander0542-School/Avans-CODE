@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using CODE_GameLib.Doors;
 
-namespace CODE_FileSystem.Factories.Interfaces
+namespace CODE_PersistenceLib.Factories.Interfaces
 {
     public interface IDoorFactory
     {
