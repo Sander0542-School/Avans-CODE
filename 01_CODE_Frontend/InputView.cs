@@ -28,17 +28,17 @@ namespace CODE_Frontend
                     break;
                 case ConsoleKey.UpArrow:
                 case ConsoleKey.W:
-                case ConsoleKey.I:
+                case ConsoleKey.K:
                     _game.Move(Direction.NORTH);
                     break;
                 case ConsoleKey.LeftArrow:
                 case ConsoleKey.A:
-                case ConsoleKey.J:
+                case ConsoleKey.H:
                     _game.Move(Direction.WEST);
                     break;
                 case ConsoleKey.DownArrow:
                 case ConsoleKey.S:
-                case ConsoleKey.K:
+                case ConsoleKey.J:
                     _game.Move(Direction.SOUTH);
                     break;
                 case ConsoleKey.RightArrow:
