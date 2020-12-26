@@ -78,13 +78,11 @@ namespace CODE_GameLib
             {
                 floor.OnEnter(this, out nextX, out nextY);
 
-                bool floorSuccess = true;
-
-                if (room.IsBorderTile(nextX, nextY)) floorSuccess = false;
+                var floorSuccess = !room.IsBorderTile(nextX, nextY);
 
                 if (room.HasConnection(nextX, nextY, out doorDirection, out connection))
                     if (connection.Door != null && !connection.Door.IsOpen(this))
-                        return floorSuccess = false;
+                        floorSuccess = false;
 
                 if (floorSuccess) return true;
             }
