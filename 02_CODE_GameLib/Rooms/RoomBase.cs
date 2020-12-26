@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CODE_GameLib.Items;
+using CODE_TempleOfDoom_DownloadableContent;
 
 namespace CODE_GameLib.Rooms
 {
@@ -22,6 +24,28 @@ namespace CODE_GameLib.Rooms
 
         public Dictionary<Direction, Connection> Connections { get; set; }
         public List<IItem> Items { get; set; }
+        public List<Enemy> Enemies { get; set; }
+
+        /// <summary>
+        ///     Shoot all the enemies in each direction from the given x and y value
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public void ShootEnemies(int x, int y)
+        {
+            Enemies.FirstOrDefault(enemy => enemy.CurrentXLocation == x && enemy.CurrentYLocation == y - 1)?.GetHurt(1); // NORTH
+            Enemies.FirstOrDefault(enemy => enemy.CurrentXLocation == x + 1 && enemy.CurrentYLocation == y)?.GetHurt(1); // EAST
+            Enemies.FirstOrDefault(enemy => enemy.CurrentXLocation == x && enemy.CurrentYLocation == y + 1)?.GetHurt(1); // SOUTH
+            Enemies.FirstOrDefault(enemy => enemy.CurrentXLocation == x - 1 && enemy.CurrentYLocation == y)?.GetHurt(1); // WEST
+        }
+
+        /// <summary>
+        ///     Move all the enemies to their next location
+        /// </summary>
+        public void MoveEnemies()
+        {
+            Enemies.ForEach(enemy => enemy.Move());
+        }
 
         /// <summary>
         ///     Checks if your new position is a bordertile
@@ -35,8 +59,7 @@ namespace CODE_GameLib.Rooms
 
             return x == Width - 1 || x == 0 || y == Height - 1 || y == 0;
         }
-
-
+        
         /// <summary>
         ///     checks if there is a connection
         /// </summary>

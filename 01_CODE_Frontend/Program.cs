@@ -20,11 +20,12 @@ namespace CODE_Frontend
                 .AddSingleton<IRoomFactory, RoomFactory>()
                 .AddSingleton<IItemFactory, ItemFactory>()
                 .AddSingleton<IDoorFactory, DoorFactory>()
+                .AddSingleton<IEnemyFactory, EnemyFactory>()
                 .AddTransient<GameReader>()
                 .BuildServiceProvider();
 
             var reader = serviceProvider.GetService<GameReader>();
-            var game = reader.Read(@"./Levels/TempleOfDoom.json");
+            var game = reader.Read(@"./Levels/TempleOfDoom_Extended_B.json");
 
             var inputView = new InputView(game);
             var gameView = new GameView();

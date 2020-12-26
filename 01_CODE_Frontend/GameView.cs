@@ -44,6 +44,10 @@ namespace CODE_Frontend
                     {
                         tileView = new PlayerTileView();
                     }
+                    else if (room.Enemies.Any(enemy => enemy.CurrentXLocation == x && enemy.CurrentYLocation == y))
+                    {
+                        tileView = new EnemyTileView();
+                    }
                     else if (room.HasConnection(x, y, out var direction, out var connection))
                     {
                         tileView = new DoorTileView(connection.Door, direction);

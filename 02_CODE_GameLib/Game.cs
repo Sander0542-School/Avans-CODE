@@ -45,6 +45,8 @@ namespace CODE_GameLib
             {
                 Player.Move(room, nextX, nextY);
 
+                Player.Room.MoveEnemies();
+
                 //When all the SankaraStones are picked up, the game ends.
                 if (!Rooms.Any(room1 => room1.Items.Any(item => item.Visible && item.GetItem() is SankaraStoneItem))) Quit = true;
 
@@ -53,6 +55,11 @@ namespace CODE_GameLib
 
                 Updated?.Invoke(this, this);
             }
+        }
+
+        public void Shoot()
+        {
+            Player.Room.ShootEnemies(Player.X, Player.Y);
         }
     }
 }

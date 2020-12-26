@@ -18,12 +18,14 @@ namespace CODE_PersistenceLib
         private readonly IDoorFactory _doorFactory;
         private readonly IRoomFactory _roomFactory;
         private readonly IItemFactory _roomItemFactory;
+        private readonly IEnemyFactory _enemyFactory;
 
-        public GameReader(IRoomFactory roomFactory, IItemFactory roomItemFactory, IDoorFactory doorFactory)
+        public GameReader(IRoomFactory roomFactory, IItemFactory roomItemFactory, IDoorFactory doorFactory, IEnemyFactory enemyFactory)
         {
             _roomFactory = roomFactory;
             _roomItemFactory = roomItemFactory;
             _doorFactory = doorFactory;
+            _enemyFactory = enemyFactory;
         }
 
         /// <summary>
@@ -80,6 +82,7 @@ namespace CODE_PersistenceLib
                 var room = _roomFactory.CreateRoom(type, id, height, width);
 
                 room.Items = jsonRoom["items"] != null ? GetRoomItems(jsonRoom["items"]) : new List<IItem>();
+                room.Enemies = jsonRoom["enemies"] != null ? GetRoomEnemies(jsonRoom["enemies"]) : new List<Enemy>();
 
                 return room;
             }
@@ -115,6 +118,32 @@ namespace CODE_PersistenceLib
             }
 
             return items;
+        }
+        
+        /// <summary>
+        ///     Parses the Room enemies from Json
+        /// </summary>
+        /// <param name="jsonEnemies"></param>
+        /// <returns></returns>
+        private List<Enemy> GetRoomEnemies(JToken jsonEnemies)
+        {
+            var enemies = new List<Enemy>();
+
+            foreach (var jsonEnemy in jsonEnemies)
+            {
+                var type = jsonEnemy["type"].Value<string>();
+                
+                var x = jsonEnemy["x"].Value<int>();
+                var y = jsonEnemy["y"].Value<int>();
+                var minX = jsonEnemy["minX"].Value<int>();
+                var minY = jsonEnemy["minY"].Value<int>();
+                var maxX = jsonEnemy["maxX"].Value<int>();
+                var maxY = jsonEnemy["maxY"].Value<int>();
+
+                enemies.Add(_enemyFactory.CreateEnemy(type, x, y, minX, minY, maxX, maxY));
+            }
+
+            return enemies;
         }
 
         /// <summary>

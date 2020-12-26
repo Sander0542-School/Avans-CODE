@@ -46,6 +46,9 @@ namespace CODE_Frontend
                 case ConsoleKey.L:
                     _game.Move(Direction.EAST);
                     break;
+                case ConsoleKey.Spacebar:
+                    _game.Shoot();
+                    break;
             }
         }
     }

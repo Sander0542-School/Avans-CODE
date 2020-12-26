@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using CODE_GameLib.Items;
 using CODE_GameLib.Rooms;
+using CODE_TempleOfDoom_DownloadableContent;
 
 namespace CODE_GameLib
 {
@@ -116,6 +117,13 @@ namespace CODE_GameLib
             Y = y;
 
             room.Items.FirstOrDefault(item => item.Visible && item.X == x && item.Y == y)?.OnUse(this);
+            
+            room.MoveEnemies();
+
+            if (Room.Enemies.Any(enemy => enemy.CurrentXLocation == X && enemy.CurrentYLocation == Y))
+            {
+                Damage(1);
+            }
         }
 
         /// <summary>
