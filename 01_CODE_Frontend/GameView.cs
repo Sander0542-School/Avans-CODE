@@ -59,7 +59,7 @@ namespace CODE_Frontend
                         tileView = new ItemTileView(item);
                     }
 
-                    tileView.BackgroundColor = GetBackgroundColor(x, y);
+                    tileView.BackgroundColor = ConsoleColor.Black;
                     tileView.Draw();
                 }
 
@@ -74,24 +74,6 @@ namespace CODE_Frontend
             Console.WriteLine("+-------------------------------------------------");
             Console.WriteLine("| A game for the course Code Development (20/21) by Sander Jochems.");
             Console.WriteLine("+-------------------------------------------------");
-        }
-
-        /// <summary>
-        ///     Gets the colour from the box on the board
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
-        private ConsoleColor GetBackgroundColor(int x, int y)
-        {
-            var xIsEven = x % 2 == 0;
-            var yIsEven = y % 2 == 0;
-
-            if (xIsEven && yIsEven) return ConsoleColor.DarkGray;
-
-            if (!xIsEven && !yIsEven) return ConsoleColor.DarkGray;
-
-            return ConsoleColor.Black;
         }
     }
 }
