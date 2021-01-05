@@ -11,7 +11,7 @@ namespace CODE_Frontend
     {
         private static void Main(string[] args)
         {
-            Console.OutputEncoding = Encoding.Unicode;
+            Console.OutputEncoding = Encoding.UTF8;
             Console.WindowWidth = 200;
             Console.WindowHeight = 50;
             Console.CursorVisible = false;
