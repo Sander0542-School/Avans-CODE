@@ -1,4 +1,5 @@
 ﻿using System;
+using CODE_GameLib;
 using CODE_PersistenceLib.Factories.Interfaces;
 using CODE_TempleOfDoom_DownloadableContent;
 
@@ -11,9 +12,9 @@ namespace CODE_PersistenceLib.Factories
             switch (type)
             {
                 case "horizontal":
-                    return new HorizontallyMovingEnemy(1, x, y, minX, maxX);
+                    return new HorizontallyMovingEnemy(Config.EnemyLives, x, y, minX, maxX);
                 case "vertical":
-                    return new VerticallyMovingEnemy(1, x, y, minY, maxY);
+                    return new VerticallyMovingEnemy(Config.EnemyLives, x, y, minY, maxY);
                 default:
                     throw new NotImplementedException("This enemy has not been implemented yet");
             }
