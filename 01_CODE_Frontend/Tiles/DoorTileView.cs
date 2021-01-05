@@ -19,7 +19,7 @@ namespace CODE_Frontend.Tiles
             {
                 ClosingGateDoor _ => '∩',
                 ColoredDoor _ => _direction == Direction.NORTH || _direction == Direction.SOUTH ? '=' : '|',
-                ToggleDoor _ => '⊥',
+                ToggleDoor _ => '┻',
                 _ => base.GetIcon()
             };
         }
