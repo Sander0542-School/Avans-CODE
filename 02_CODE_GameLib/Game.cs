@@ -18,8 +18,11 @@ namespace CODE_GameLib
             Player = player;
         }
 
-        public Player Player { get; }
+        public string Level { get; }
+
         public List<RoomBase> Rooms { get; }
+
+        public Player Player { get; }
 
         public bool Quit
         {
@@ -30,8 +33,6 @@ namespace CODE_GameLib
                 Updated?.Invoke(this, this);
             }
         }
-
-        public string Level { get; set; }
 
         public event EventHandler<Game> Updated;
 
