@@ -86,8 +86,8 @@ namespace CODE_Frontend
             Console.WriteLine("|");
             Console.WriteLine("+-------------------------------------------------");
             Console.WriteLine($"| Lives:  {player.Lives}");
-            Console.WriteLine($"| Stones: {player.Items.Count(item => item.GetItem() is SankaraStoneItem)}");
-            Console.WriteLine($"| Keys:   {string.Join(", ", player.Items.Where(item => item.GetItem() is KeyItem).Select(item => ((KeyItem) item.GetItem()).Color))}");
+            Console.WriteLine($"| Stones: {player.Stones}");
+            Console.WriteLine($"| Keys:   {string.Join(", ", player.Keys)}");
             Console.WriteLine("+-------------------------------------------------");
             Console.WriteLine("| A game for the course Code Development (20/21) by Sander Jochems.");
             Console.WriteLine("+-------------------------------------------------");

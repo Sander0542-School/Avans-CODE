@@ -44,7 +44,7 @@ namespace CODE_GameLib
             if (Player.CanMove(direction, out var room, out var nextX, out var nextY))
             {
                 Player.Move(room, nextX, nextY);
-                
+
                 room.MoveEnemies();
 
                 if (Player.Room.Enemies.Any(enemy => enemy.CurrentXLocation == Player.X && enemy.CurrentYLocation == Player.Y))
@@ -53,7 +53,7 @@ namespace CODE_GameLib
                 }
 
                 //When all the SankaraStones are picked up, the game ends.
-                if (!Rooms.Any(room1 => room1.Items.Any(item => item.Visible && item.GetItem() is SankaraStoneItem))) Quit = true;
+                if (Player.Stones >= Config.StoneNeededToWin) Quit = true;
 
                 //When the Lives are over the game ends
                 if (Player.Lives <= 0) Quit = true;

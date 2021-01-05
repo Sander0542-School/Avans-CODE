@@ -27,6 +27,9 @@ namespace CODE_GameLib
         public int X { get; private set; }
         public int Y { get; private set; }
 
+        public int Stones => Items.Count(item => item.GetItem() is SankaraStoneItem);
+        public string[] Keys => Items.Where(item => item.GetItem() is KeyItem).Select(item => ((KeyItem) item.GetItem()).Color).ToArray();
+
         /// <summary>
         ///     Checks if player can move to the next location, so yes it returns the next y and x
         /// </summary>
