@@ -53,7 +53,12 @@ namespace CODE_GameLib.Rooms
         /// </summary>
         public void MoveEnemies()
         {
-            Enemies.ForEach(enemy => enemy.Move());
+            foreach (var enemy in Enemies)
+            {
+                enemy.Move();
+
+                Floors.FirstOrDefault(floor1 => floor1.X == enemy.CurrentXLocation && floor1.Y == enemy.CurrentYLocation)?.OnEnter(enemy);
+            }
         }
 
         /// <summary>
