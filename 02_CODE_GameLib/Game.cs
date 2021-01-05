@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CODE_GameLib.Items;
 using CODE_GameLib.Rooms;
 
 namespace CODE_GameLib
@@ -10,12 +9,17 @@ namespace CODE_GameLib
     {
         private bool _quit;
 
+        private readonly IDictionary<Cheat, bool> _cheats;
+
         public Game(string level, List<RoomBase> rooms, Player player)
         {
             Level = level;
 
             Rooms = rooms;
             Player = player;
+
+            //Set all cheats to disabled
+            _cheats = Enum.GetValues(typeof(Cheat)).Cast<Cheat>().ToDictionary(cheat => cheat, cheat => false);
         }
 
         public string Level { get; }
@@ -33,6 +37,8 @@ namespace CODE_GameLib
                 Updated?.Invoke(this, this);
             }
         }
+
+        public int StonesNeeded { get; private set; } = Config.StoneNeededToWin;
 
         public event EventHandler<Game> Updated;
 
@@ -55,6 +61,7 @@ namespace CODE_GameLib
 
                 //When all the SankaraStones are picked up, the game ends.
                 if (Player.Stones >= Config.StoneNeededToWin) Quit = true;
+                if (Player.Stones >= StonesNeeded) Quit = true;
 
                 //When the Lives are over the game ends
                 if (Player.Lives <= 0) Quit = true;
@@ -69,6 +76,22 @@ namespace CODE_GameLib
             {
                 Updated?.Invoke(this, this);
             }
+        }
+
+        public void ToggleCheat(Cheat cheat)
+        {
+            var enabled = !_cheats[cheat];
+
+            switch (cheat)
+            {
+                case Cheat.NextStoneWin:
+                    StonesNeeded = enabled ? Player.Stones + 1 : Config.StoneNeededToWin;
+                    break;
+            }
+
+            _cheats[cheat] = enabled;
+
+            Updated?.Invoke(this, this);
         }
     }
 }

@@ -87,7 +87,7 @@ namespace CODE_Frontend
             Console.WriteLine("|");
             Console.WriteLine("+-------------------------------------------------");
             Console.WriteLine($"| Lives:  {player.Lives}");
-            Console.WriteLine($"| Stones: {player.Stones}");
+            Console.WriteLine($"| Stones: {player.Stones}/{game.StonesNeeded}");
             Console.WriteLine($"| Keys:   {string.Join(", ", player.Keys)}");
             Console.WriteLine("+-------------------------------------------------");
             Console.WriteLine("| A game for the course Code Development (20/21) by Sander Jochems.");

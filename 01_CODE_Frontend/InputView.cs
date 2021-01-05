@@ -27,27 +27,26 @@ namespace CODE_Frontend
                     _game.Quit = true;
                     break;
                 case ConsoleKey.UpArrow:
-                case ConsoleKey.W:
                 case ConsoleKey.K:
                     _game.Move(Direction.NORTH);
                     break;
                 case ConsoleKey.LeftArrow:
-                case ConsoleKey.A:
                 case ConsoleKey.H:
                     _game.Move(Direction.WEST);
                     break;
                 case ConsoleKey.DownArrow:
-                case ConsoleKey.S:
                 case ConsoleKey.J:
                     _game.Move(Direction.SOUTH);
                     break;
                 case ConsoleKey.RightArrow:
-                case ConsoleKey.D:
                 case ConsoleKey.L:
                     _game.Move(Direction.EAST);
                     break;
                 case ConsoleKey.Spacebar:
                     _game.Shoot();
+                    break;
+                case ConsoleKey.S:
+                    _game.ToggleCheat(Cheat.NextStoneWin);
                     break;
             }
         }
