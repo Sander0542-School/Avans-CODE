@@ -106,16 +106,6 @@ namespace CODE_GameLib
         /// <summary>
         ///     Updates the user position for moving
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        public void Move(int x, int y)
-        {
-            Move(Room, x, y);
-        }
-
-        /// <summary>
-        ///     Updates the user position for moving
-        /// </summary>
         /// <param name="room"></param>
         /// <param name="x"></param>
         /// <param name="y"></param>
