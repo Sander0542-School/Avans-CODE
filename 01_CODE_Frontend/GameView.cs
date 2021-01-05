@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using CODE_Frontend.Tiles;
 using CODE_GameLib;
@@ -28,7 +29,7 @@ namespace CODE_Frontend
             Console.WriteLine("+-------------------------------------------------");
 
             Console.WriteLine("| Welcome to the Temple of Doom!");
-            Console.WriteLine($"| Current level: {game.Level}");
+            Console.WriteLine($"| Current level: {Path.GetFileNameWithoutExtension(game.Level) ?? game.Level}");
 #if DEBUG
             Console.WriteLine($"| Room: {player.Room.Id} - Coords ({player.X}, {player.Y})");
 #endif
