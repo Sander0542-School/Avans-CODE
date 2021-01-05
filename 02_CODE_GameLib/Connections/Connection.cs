@@ -9,7 +9,7 @@ namespace CODE_GameLib.Connections
         public RoomBase TargetRoom { get; set; }
 
         public Direction TargetDirection { get; set; }
-        
+
         public IDoor Door { get; set; }
 
         public void GetExitLocation(out RoomBase room, out int x, out int y)
