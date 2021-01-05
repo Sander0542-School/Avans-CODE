@@ -3,5 +3,6 @@
     public enum Cheat
     {
         NextStoneWin,
+        ClosingGatePortal
     }
 }

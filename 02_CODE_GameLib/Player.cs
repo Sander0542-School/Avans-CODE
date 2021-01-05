@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using CODE_GameLib.Doors;
 using CODE_GameLib.Items;
 using CODE_GameLib.Rooms;
-using CODE_TempleOfDoom_DownloadableContent;
 
 namespace CODE_GameLib
 {
     public class Player
     {
+        private readonly RoomBase _startRoom;
+        private readonly int _startX;
+        private readonly int _startY;
+
         public Player(int lives, RoomBase room, int x, int y)
         {
             Lives = lives;
-            Room = room;
-            X = x;
-            Y = y;
+            
+            Room = _startRoom = room;
+            X = _startX = x;
+            Y = _startY = y;
 
             Items = new ObservableCollection<IItem>();
         }
@@ -48,6 +53,15 @@ namespace CODE_GameLib
             if (room.HasConnection(nextX, nextY, out var doorDirection, out var connection) && direction == doorDirection)
             {
                 if (!(connection.Door?.IsOpen(this) ?? true)) return false;
+
+                if (connection.Door is ClosingGateDoor {PortalMode: true})
+                {
+                    room = _startRoom;
+                    nextX = _startX;
+                    nextY = _startY;
+
+                    return true;
+                }
 
                 connection.GetExitLocation(out room, out nextX, out nextY);
 

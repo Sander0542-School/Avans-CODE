@@ -2,16 +2,17 @@
 {
     public class ClosingGateDoor : IDoor
     {
-        private bool _open = true;
+        private bool _closed;
+        public bool PortalMode { get; set; }
 
         public bool IsOpen(Player player)
         {
-            return _open;
+            return !_closed || PortalMode;
         }
 
         public void AfterUse(Player player)
         {
-            _open = false;
+            _closed = true;
         }
     }
 }

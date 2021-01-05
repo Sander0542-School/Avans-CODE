@@ -48,6 +48,9 @@ namespace CODE_Frontend
                 case ConsoleKey.S:
                     _game.ToggleCheat(Cheat.NextStoneWin);
                     break;
+                case ConsoleKey.T:
+                    _game.ToggleCheat(Cheat.ClosingGatePortal);
+                    break;
             }
         }
     }

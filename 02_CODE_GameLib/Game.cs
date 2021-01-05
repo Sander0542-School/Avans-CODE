@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CODE_GameLib.Doors;
 using CODE_GameLib.Rooms;
 
 namespace CODE_GameLib
@@ -60,7 +61,6 @@ namespace CODE_GameLib
                 }
 
                 //When all the SankaraStones are picked up, the game ends.
-                if (Player.Stones >= Config.StoneNeededToWin) Quit = true;
                 if (Player.Stones >= StonesNeeded) Quit = true;
 
                 //When the Lives are over the game ends
@@ -86,6 +86,20 @@ namespace CODE_GameLib
             {
                 case Cheat.NextStoneWin:
                     StonesNeeded = enabled ? Player.Stones + 1 : Config.StoneNeededToWin;
+                    break;
+                case Cheat.ClosingGatePortal:
+                    var gateDoors = Rooms
+                        .SelectMany(room => room.Connections)
+                        .Select(pair => pair.Value.Door)
+                        .Where(door => door is ClosingGateDoor)
+                        .Cast<ClosingGateDoor>()
+                        .Distinct();
+
+                    foreach (var closingDoor in gateDoors)
+                    {
+                        closingDoor.PortalMode = enabled;
+                    }
+
                     break;
             }
 
