@@ -1,55 +1,85 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
-  <Class Name="CODE_FileSystem.Factories.DoorFactory" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="7.75" Width="4.5" />
+  <Class Name="CODE_PersistenceLib.Factories.DoorFactory" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="8.5" Width="4.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Factories\DoorFactory.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="CODE_FileSystem.Factories.ItemFactory" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="6" Width="5" />
+  <Class Name="CODE_PersistenceLib.Factories.ItemFactory" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="6.75" Width="5" />
     <TypeIdentifier>
       <HashCode>AABAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Factories\ItemFactory.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="CODE_FileSystem.Factories.RoomFactory" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="4.5" Width="4.25" />
+  <Class Name="CODE_PersistenceLib.Factories.RoomFactory" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="5.25" Width="4.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
       <FileName>Factories\RoomFactory.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="CODE_FileSystem.GameReader">
+  <Class Name="CODE_PersistenceLib.GameReader">
     <Position X="0.5" Y="0.5" Width="6.25" />
     <TypeIdentifier>
-      <HashCode>AAgAAAABBAAAAAAIAIGAAACgAIAAAAAAAAAAAAgAAAA=</HashCode>
+      <HashCode>AAgAAAABBIAAAAAJAIGAAACgAIAAAACAAAAAAAgAAAA=</HashCode>
       <FileName>GameReader.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="CODE_FileSystem.Factories.Interfaces.IDoorFactory">
-    <Position X="6.25" Y="7.75" Width="4.5" />
+  <Class Name="CODE_PersistenceLib.Factories.EnemyFactory" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="10" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\EnemyFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_PersistenceLib.Factories.FloorFactory" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="11.5" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Factories\FloorFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="CODE_PersistenceLib.Factories.Interfaces.IDoorFactory">
+    <Position X="0.5" Y="8.5" Width="4.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Factories\Interfaces\IDoorFactory.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="CODE_FileSystem.Factories.Interfaces.IItemFactory">
-    <Position X="6.25" Y="6" Width="5" />
+  <Interface Name="CODE_PersistenceLib.Factories.Interfaces.IItemFactory">
+    <Position X="0.5" Y="6.75" Width="5" />
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Factories\Interfaces\IItemFactory.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="CODE_FileSystem.Factories.Interfaces.IRoomFactory">
-    <Position X="6.25" Y="4.5" Width="4.25" />
+  <Interface Name="CODE_PersistenceLib.Factories.Interfaces.IRoomFactory">
+    <Position X="0.5" Y="5.25" Width="4.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
       <FileName>Factories\Interfaces\IRoomFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_PersistenceLib.Factories.Interfaces.IEnemyFactory">
+    <Position X="0.5" Y="10" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\Interfaces\IEnemyFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_PersistenceLib.Factories.Interfaces.IFloorFactory">
+    <Position X="0.5" Y="11.5" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Factories\Interfaces\IFloorFactory.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="CODE_GameLib.Doors.ClosingGateDoor" BaseTypeListCollapsed="true">
-    <Position X="4.5" Y="14.5" Width="2.5" />
+    <Position X="7.25" Y="10.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQIAAAAAAA=</HashCode>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAQAQAAAAAAAA=</HashCode>
       <FileName>Doors\ClosingGateDoor.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CODE_GameLib.Doors.ColoredDoor" BaseTypeListCollapsed="true">
-    <Position X="7.75" Y="14.5" Width="2.75" />
+    <Position X="10.5" Y="10.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAgAAAAAA=</HashCode>
       <FileName>Doors\ColoredDoor.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CODE_GameLib.Doors.ToggleDoor" BaseTypeListCollapsed="true">
-    <Position X="1.25" Y="14.5" Width="2.5" />
+    <Position X="4" Y="10.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAQIAAAAAAA=</HashCode>
       <FileName>Doors\ToggleDoor.cs</FileName>
@@ -25,36 +25,36 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CODE_GameLib.Items.Decorators.BaseItemDecorator">
-    <Position X="9.25" Y="8.25" Width="2.75" />
+    <Position X="4" Y="4.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAgACAAAAAAECAAAAAAAAAAAAAAAAIAAAAAAAAYAA=</HashCode>
+      <HashCode>AAAAgAAAAAAAAEAAAAAAAAAAAAAAAAAIAAAAAAAgYAA=</HashCode>
       <FileName>Items\Decorators\BaseItemDecorator.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CODE_GameLib.Items.Decorators.DamageItemDecorator">
-    <Position X="5" Y="11.75" Width="3.5" />
+    <Position X="0.5" Y="8.25" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Decorators\DamageItemDecorator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CODE_GameLib.Items.Decorators.DisappearingItemDecorator">
-    <Position X="9.25" Y="11.75" Width="3.25" />
+    <Position X="4.75" Y="8.25" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Decorators\DisappearingItemDecorator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CODE_GameLib.Items.Decorators.PickupableItemDecorator">
-    <Position X="13.25" Y="11.75" Width="3" />
+    <Position X="8.75" Y="8.25" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Items\Decorators\PickupableItemDecorator.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CODE_GameLib.Items.BoobietrapItem" BaseTypeListCollapsed="true">
-    <Position X="11" Y="18" Width="2.5" />
+    <Position X="10.25" Y="13.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAgACAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAYAA=</HashCode>
       <FileName>Items\BoobietrapItem.cs</FileName>
@@ -62,7 +62,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CODE_GameLib.Items.KeyItem" BaseTypeListCollapsed="true">
-    <Position X="4.5" Y="18" Width="2.5" />
+    <Position X="3.75" Y="13.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAgACAAAAAAAAAAAAAAAAAAAAAAAAIAAAAgAAAYAA=</HashCode>
       <FileName>Items\KeyItem.cs</FileName>
@@ -70,7 +70,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CODE_GameLib.Items.PressurePlateItem" BaseTypeListCollapsed="true">
-    <Position X="7.75" Y="18" Width="2.5" />
+    <Position X="7" Y="13.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAgACAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAYAA=</HashCode>
       <FileName>Items\PressurePlateItem.cs</FileName>
@@ -78,7 +78,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CODE_GameLib.Items.SankaraStoneItem" BaseTypeListCollapsed="true">
-    <Position X="1.25" Y="18" Width="2.5" />
+    <Position X="0.5" Y="13.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAgACAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAYAA=</HashCode>
       <FileName>Items\SankaraStoneItem.cs</FileName>
@@ -86,38 +86,23 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="CODE_GameLib.Rooms.Room">
-    <Position X="5.75" Y="7" Width="2.5" />
+    <Position X="12" Y="5.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Rooms\Room.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CODE_GameLib.Rooms.RoomBase">
-    <Position X="4.5" Y="3.25" Width="2.75" />
-    <AssociationLine Name="Connections" Type="CODE_GameLib.Connection">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-1.507" Y="0.386" />
-      </MemberNameLabel>
-    </AssociationLine>
+    <Position X="12" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAACAAAABAAACAAAAAAAAEAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <HashCode>AAACAAAABAAACIgAAAAABEAAAAEgAABAAAAAACAAACA=</HashCode>
       <FileName>Rooms\RoomBase.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Property Name="Connections" />
-    </ShowAsCollectionAssociation>
-  </Class>
-  <Class Name="CODE_GameLib.Connection">
-    <Position X="1.75" Y="7" Width="2.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAAA=</HashCode>
-      <FileName>Connection.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CODE_GameLib.Game">
-    <Position X="1.75" Y="2.25" Width="6.5" />
+    <Position X="0.5" Y="0.5" Width="6.5" />
     <TypeIdentifier>
-      <HashCode>ACACAAAAAIAAAAAAAIAAAAACAAAAAAABQAAAAQAAASA=</HashCode>
+      <HashCode>ACAAAAAAAIAABAAAAAQAAAAGAgAAAAABQAAAAQAAAQA=</HashCode>
       <FileName>Game.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -128,42 +113,79 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="CODE_GameLib.Player" BaseTypeListCollapsed="true">
-    <Position X="10" Y="3.5" Width="3" />
+    <Position X="8" Y="0.5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAACAAIAACAAAABAAAAAAgAAAAAACAAAAAAAAYAA=</HashCode>
+      <HashCode>AAAAACCAAIAACAAACBAAAAAAgAAAAAAKEADAAAAAYAA=</HashCode>
       <FileName>Player.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Items" />
     </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="CODE_GameLib.Connections.Connection" BaseTypeListCollapsed="true">
+    <Position X="10" Y="19.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAgAgAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Connections\Connection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Connections.Portal" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="19.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAwAAgAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Connections\Portal.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CODE_GameLib.Floors.ConveyorBeltFloor" BaseTypeListCollapsed="true">
+    <Position X="5" Y="16.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAACAAAAAAAAAAAAAAAIAAAAAAYAA=</HashCode>
+      <FileName>Floors\ConveyorBeltFloor.cs</FileName>
+    </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Interface Name="CODE_GameLib.Doors.IDoor">
-    <Position X="13.75" Y="8.5" Width="2.25" />
+    <Position X="0.5" Y="10.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
       <FileName>Doors\IDoor.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="CODE_GameLib.Items.IItem">
-    <Position X="13.75" Y="5.25" Width="2.25" />
+    <Position X="8" Y="5.25" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAgACAAAAAAEAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAgAAAAAAAAEAAAAAAAAAAAAAAAAAIAAAAAAAAYAA=</HashCode>
       <FileName>Items\IItem.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="CODE_GameLib.ICoordinates">
-    <Position X="13.75" Y="2.5" Width="2.25" />
+  <Interface Name="CODE_GameLib.Connections.IConnection">
+    <Position X="0.5" Y="19.5" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
-      <FileName>ICoordinates.cs</FileName>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAgAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Connections\IConnection.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CODE_GameLib.Floors.IFloor">
+    <Position X="0.5" Y="16.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAYAA=</HashCode>
+      <FileName>Floors\IFloor.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="CODE_GameLib.Direction">
-    <Position X="1.75" Y="10.25" Width="1.5" />
+    <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAgAAAAAABAAAQAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Direction.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="CODE_GameLib.Cheat">
+    <Position X="2.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cheat.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />
